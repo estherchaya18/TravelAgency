@@ -5,10 +5,16 @@ using System.Threading.Tasks;
 
 namespace TravelAgency.Models
 {
-    public class Airlines
+    public class Order
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public int FlightId { get; set; }
+
+        public int ClientId { get; set; }
+
+        public DateTime DateOrder { get; set; }
+
+
     }
 }
