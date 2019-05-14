@@ -11,5 +11,6 @@ namespace TravelAgency.Models
 
         public string Name { get; set; }
 
+
     }
 }
