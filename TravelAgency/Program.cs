@@ -14,7 +14,26 @@ namespace TravelAgency
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+               var host = BuildWebHost(args).Run();
+           // var BuildWebHost(args).Run();
+            // host.Run();
+           // using (var scope = host.Services.CreateScope())
+            //{
+              //  var services = scope.ServiceProvider;
+
+                //DatabaseContext context = services.GetRequiredService<DatabaseContext>();
+
+                //if(context.Phone.Count() == 0 )
+                //{
+                  //  (context.Add(new Phone() {Id = "aaa" , Name = "Iphone"}));
+                    //context.SaveChanges();
+                //}
+               */ 
+
+            }
+
+
+          
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
