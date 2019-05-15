@@ -1,0 +1,75 @@
+﻿@model TravelAgency.Models.Flights
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Flights</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppearanceAirportId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppearanceAirportId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LandingAirportId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LandingAirportId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AppppearanceDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppppearanceDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LandingDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LandingDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AppearanceTerminal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppearanceTerminal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LandingTerminal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LandingTerminal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSeats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalSeats)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservedSeats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReservedSeats)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
