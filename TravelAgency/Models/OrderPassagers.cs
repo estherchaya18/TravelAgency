@@ -7,16 +7,13 @@ namespace TravelAgency.Models
 {
     public class OrderPassagers
     {
-        public int Id { get; set; }
 
+        public int PassangerId { get; set; }
         public int OrderId { get; set; }
 
-        public string Name { get; set; }
 
-        public string PassportId { get; set; }
-
-        public DateTime BirthDate { get; set; }
-
+        public virtual Order Order { get; set; }
+        public virtual Passanger Passanger { get; set; }
 
     }
 }

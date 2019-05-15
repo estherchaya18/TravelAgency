@@ -14,5 +14,7 @@ namespace TravelAgency.Models
         public string Password { get; set; }
 
         public bool Director { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

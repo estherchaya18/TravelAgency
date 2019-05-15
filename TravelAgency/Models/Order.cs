@@ -15,6 +15,10 @@ namespace TravelAgency.Models
 
         public DateTime DateOrder { get; set; }
 
+        public virtual Flights Flights { get; set; }
 
+        public virtual Clients Clients { get; set; }
+
+        public virtual ICollection<OrderPassagers> orderPassangers { get; set; }
     }
 }

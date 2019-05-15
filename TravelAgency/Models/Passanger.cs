@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 
 namespace TravelAgency.Models
 {
-    public class Airlines
+    public class Passanger
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Flights> Flights { get; set; }
+        public string PassportId { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
+        public virtual ICollection<OrderPassagers> orderPassangers { get; set; }
     }
 }

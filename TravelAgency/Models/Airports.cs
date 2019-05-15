@@ -11,5 +11,7 @@ namespace TravelAgency.Models
 
         public string AirportDetailes { get; set; }
 
+
+        public virtual ICollection<Flights> Flights { get; set; }
     }
 }
