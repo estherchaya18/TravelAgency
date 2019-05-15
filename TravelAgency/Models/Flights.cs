@@ -30,7 +30,12 @@ namespace TravelAgency.Models
 
         public int AirlinesId { get; set; }
 
-        public Airports Airports { get; set; }
         public Airlines Airlines { get; set; }
+
+        public Airports AppearanceAirport { get; set; }
+
+
+        public Airports LandingAirport { get; set; }
+
     }
 }

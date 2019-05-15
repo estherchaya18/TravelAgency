@@ -11,18 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AppearanceAirportId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AppearanceAirportId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LandingAirportId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LandingAirportId)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.AppppearanceDateTime)
         </dt>
         <dd>
@@ -69,6 +57,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Airlines.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AppearanceAirport)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppearanceAirport.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LandingAirport)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LandingAirport.Id)
         </dd>
     </dl>
 </div>

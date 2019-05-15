@@ -14,13 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="AppearanceAirportId" class="control-label"></label>
-                <input asp-for="AppearanceAirportId" class="form-control" />
-                <span asp-validation-for="AppearanceAirportId" class="text-danger"></span>
+                <select asp-for="AppearanceAirportId" class ="form-control" asp-items="ViewBag.AppearanceAirportId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="LandingAirportId" class="control-label"></label>
-                <input asp-for="LandingAirportId" class="form-control" />
-                <span asp-validation-for="LandingAirportId" class="text-danger"></span>
+                <select asp-for="LandingAirportId" class ="form-control" asp-items="ViewBag.LandingAirportId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AppppearanceDateTime" class="control-label"></label>

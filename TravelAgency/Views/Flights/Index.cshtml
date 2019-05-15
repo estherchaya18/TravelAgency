@@ -13,12 +13,6 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.AppearanceAirportId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LandingAirportId)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.AppppearanceDateTime)
                 </th>
                 <th>
@@ -42,18 +36,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Airlines)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppearanceAirport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandingAirport)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AppearanceAirportId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LandingAirportId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AppppearanceDateTime)
             </td>
@@ -77,6 +71,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Airlines.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppearanceAirport.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LandingAirport.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

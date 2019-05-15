@@ -21,7 +21,7 @@ namespace TravelAgency.Controllers
         // GET: Flights
         public async Task<IActionResult> Index()
         {
-            var travelAgencyContext = _context.Flights.Include(f => f.Airlines);
+            var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport);
             return View(await travelAgencyContext.ToListAsync());
         }
 
@@ -35,6 +35,8 @@ namespace TravelAgency.Controllers
 
             var flights = await _context.Flights
                 .Include(f => f.Airlines)
+                .Include(f => f.AppearanceAirport)
+                .Include(f => f.LandingAirport)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (flights == null)
             {
@@ -48,6 +50,8 @@ namespace TravelAgency.Controllers
         public IActionResult Create()
         {
             ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Name");
+            ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
+            ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
             return View();
         }
 
@@ -65,6 +69,8 @@ namespace TravelAgency.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Id", flights.AirlinesId);
+            ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "Id", flights.AppearanceAirportId);
+            ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "Id", flights.LandingAirportId);
             return View(flights);
         }
 
@@ -82,6 +88,8 @@ namespace TravelAgency.Controllers
                 return NotFound();
             }
             ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Id", flights.AirlinesId);
+            ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "Id", flights.AppearanceAirportId);
+            ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "Id", flights.LandingAirportId);
             return View(flights);
         }
 
@@ -118,6 +126,8 @@ namespace TravelAgency.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Id", flights.AirlinesId);
+            ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "Id", flights.AppearanceAirportId);
+            ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "Id", flights.LandingAirportId);
             return View(flights);
         }
 
@@ -131,6 +141,8 @@ namespace TravelAgency.Controllers
 
             var flights = await _context.Flights
                 .Include(f => f.Airlines)
+                .Include(f => f.AppearanceAirport)
+                .Include(f => f.LandingAirport)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (flights == null)
             {
