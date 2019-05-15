@@ -12,8 +12,8 @@ namespace TravelAgency.Models
         public int OrderId { get; set; }
 
 
-        public virtual Order Order { get; set; }
-        public virtual Passanger Passanger { get; set; }
+        public Order Order { get; set; }
+        public Passanger Passanger { get; set; }
 
     }
 }

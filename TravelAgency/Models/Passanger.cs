@@ -15,6 +15,6 @@ namespace TravelAgency.Models
 
         public DateTime BirthDate { get; set; }
 
-        public virtual ICollection<OrderPassagers> orderPassangers { get; set; }
+        public ICollection<OrderPassagers> orderPassangers { get; set; }
     }
 }

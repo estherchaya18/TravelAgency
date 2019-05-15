@@ -28,6 +28,6 @@ namespace TravelAgency.Models
 
         public int ReservedSeats { get; set; }
 
-        public virtual Airports Airports { get; set; }
+        public Airports Airports { get; set; }
     }
 }
