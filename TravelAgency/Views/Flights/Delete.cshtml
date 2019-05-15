@@ -65,6 +65,12 @@
         <dd>
             @Html.DisplayFor(model => model.ReservedSeats)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Airlines)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Airlines.Id)
+        </dd>
     </dl>
     
     <form asp-action="Delete">

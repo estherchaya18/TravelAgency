@@ -21,7 +21,8 @@ namespace TravelAgency.Controllers
         // GET: Flights
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Flights.ToListAsync());
+            var travelAgencyContext = _context.Flights.Include(f => f.Airlines);
+            return View(await travelAgencyContext.ToListAsync());
         }
 
         // GET: Flights/Details/5
@@ -33,6 +34,7 @@ namespace TravelAgency.Controllers
             }
 
             var flights = await _context.Flights
+                .Include(f => f.Airlines)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (flights == null)
             {
@@ -45,6 +47,7 @@ namespace TravelAgency.Controllers
         // GET: Flights/Create
         public IActionResult Create()
         {
+            ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Name");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace TravelAgency.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AppearanceAirportId,LandingAirportId,AppppearanceDateTime,LandingDateTime,AppearanceTerminal,LandingTerminal,Price,TotalSeats,ReservedSeats")] Flights flights)
+        public async Task<IActionResult> Create([Bind("Id,AppearanceAirportId,LandingAirportId,AppppearanceDateTime,LandingDateTime,AppearanceTerminal,LandingTerminal,Price,TotalSeats,ReservedSeats,AirlinesId")] Flights flights)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace TravelAgency.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Id", flights.AirlinesId);
             return View(flights);
         }
 
@@ -77,6 +81,7 @@ namespace TravelAgency.Controllers
             {
                 return NotFound();
             }
+            ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Id", flights.AirlinesId);
             return View(flights);
         }
 
@@ -85,7 +90,7 @@ namespace TravelAgency.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AppearanceAirportId,LandingAirportId,AppppearanceDateTime,LandingDateTime,AppearanceTerminal,LandingTerminal,Price,TotalSeats,ReservedSeats")] Flights flights)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AppearanceAirportId,LandingAirportId,AppppearanceDateTime,LandingDateTime,AppearanceTerminal,LandingTerminal,Price,TotalSeats,ReservedSeats,AirlinesId")] Flights flights)
         {
             if (id != flights.Id)
             {
@@ -112,6 +117,7 @@ namespace TravelAgency.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AirlinesId"] = new SelectList(_context.Airlines, "Id", "Id", flights.AirlinesId);
             return View(flights);
         }
 
@@ -124,6 +130,7 @@ namespace TravelAgency.Controllers
             }
 
             var flights = await _context.Flights
+                .Include(f => f.Airlines)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (flights == null)
             {

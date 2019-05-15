@@ -28,6 +28,9 @@ namespace TravelAgency.Models
 
         public int ReservedSeats { get; set; }
 
+        public int AirlinesId { get; set; }
+
         public Airports Airports { get; set; }
+        public Airlines Airlines { get; set; }
     }
 }
