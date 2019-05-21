@@ -23,7 +23,7 @@ namespace TravelAgency.Controllers
         public async Task<IActionResult> Index(string from,string to,DateTime departure,int passengers)
         {
             var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
-                .Where(flight => flight.AppearanceAirportId.ToString()== from && flight.LandingAirportId.ToString()==to && flight.AppppearanceDateTime.);
+                .Where(flight => flight.AppearanceAirportId.ToString()== from && flight.LandingAirportId.ToString()==to && flight.AppppearanceDateTime.Date==departure.Date);
            //return View(await travelAgencyContext.ToListAsync());
             ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
             ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
