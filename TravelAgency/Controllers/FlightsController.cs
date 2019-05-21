@@ -19,9 +19,16 @@ namespace TravelAgency.Controllers
         }
 
         // GET: Flights
-        public async Task<IActionResult> Index()
+        //קבלת המידע מהויו שהגדרנו בעזרת התגית FORM
+        public async Task<IActionResult> Index(string from,string to,DateTime departure,int passengers)
         {
-            var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport);
+            var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
+                .Where(flight => flight.AppearanceAirportId.ToString()== from && flight.LandingAirportId.ToString()==to && flight.AppppearanceDateTime.);
+           //return View(await travelAgencyContext.ToListAsync());
+            ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
+            ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
+
+      
             return View(await travelAgencyContext.ToListAsync());
         }
 

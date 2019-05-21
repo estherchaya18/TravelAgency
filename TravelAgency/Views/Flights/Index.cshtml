@@ -5,6 +5,20 @@
 }
 
 <h2>Index</h2>
+//כותבים FORM  כדי שהוא יודע להחזיר את המידע לקונטרולר
+<form>
+    @*<label>enter e</label>
+        <input name="search1" placeholder="name"/>
+        <button>SEARCH</button>*@
+    <label>מתיולאן?</label>
+    <select name="from" class="form-control" asp-items="ViewBag.AppearanceAirportId"></select>
+    <select name="to" class="form-control" asp-items="ViewBag.LandingAirportId"></select>
+    <input name="departure" type="date" placeholder="Departure" />
+    <input name="passengers" placeholder="Passengers" />
+    <button>SEARCH</button>
+
+
+</form>
 
 <p>
     <a asp-action="Create">Create New</a>

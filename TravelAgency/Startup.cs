@@ -48,7 +48,8 @@ namespace TravelAgency
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    //הגדרת דף נחיתה לדף של FLIGHTS
+                    template: "{controller=Flights}/{action=Index}/{id?}");
             });
         }
     }
