@@ -176,7 +176,7 @@ img::-moz-selection {
 header.masthead {
     text-align: center;
     color: white;
-    background-image: url('../images/airplane.jpg');
+    background-image: url('../images/airplane2.jpg');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -595,10 +595,14 @@ header.masthead .intro-text .intro-heading {
 }
 
 section#contact {
-  background-color: #212529;
-  background-image: url("../images/map-image.png");
-  background-repeat: no-repeat;
-  background-position: center;
+    width: 90%;
+    border-radius: 10px;
+    background-color: #212529;
+    background-image: url(../images/map-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 section#contact .section-heading {
