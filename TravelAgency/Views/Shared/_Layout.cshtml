@@ -79,7 +79,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Travel agency</title>
     <!-- Bootstrap core CSS -->
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -95,28 +95,28 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+            <a class="navbar-brand js-scroll-trigger" asp-controller="Flights" asp-action="Index">Travel agency</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                        <a class="nav-link js-scroll-trigger" href="#portfolio">Flights</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger"  asp-action="About">About</a>
+                        <a class="nav-link js-scroll-trigger" href="~/Home/About">About</a>
+                        @*<a asp-="~/Home/About">About</a>*@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#team">Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger"  asp-action="Contact">Contact</a>
+                        <a class="nav-link js-scroll-trigger" href="~/Home/Contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -125,15 +125,14 @@
     <!-- Header -->
     <header class="masthead">
         <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
-                <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="intro-text" style="height:300px">
+                @*<div class="intro-lead-in">Welcome To Your Travel Plan!</div>
+                <div class="intro-heading text-uppercase">It's Nice To Meet You</div>*@
             </div>
         </div>
     </header>
     @RenderBody()
-    <!-- Services -->
+    <!-- Services
     <section class="page-section" id="services">
         <div class="container">
             <div class="row">
@@ -169,13 +168,13 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Portfolio Grid -->
+    </section>-->
+    <!-- Portfolio Grid
     <section class="bg-light page-section" id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
+                    <h2 class="section-heading text-uppercase">Flighnts</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
             </div>
@@ -266,9 +265,8 @@
                 </div>
             </div>
         </div>
-    </section>
-   
-    <!-- Team -->
+    </section>-->
+    <!-- Team
     <section class="bg-light page-section" id="team">
         <div class="container">
             <div class="row">
@@ -357,7 +355,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- Clients -->
     <section class="py-5">
         <div class="container">
@@ -385,7 +383,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

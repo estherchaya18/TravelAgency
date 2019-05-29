@@ -4,27 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-//כותבים FORM  כדי שהוא יודע להחזיר את המידע לקונטרולר
+<h2>@*Index*@</h2>
+@*כותבים FORM  כדי שהוא יודע להחזיר את המידע לקונטרולר*@
 <form>
     @*<label>enter e</label>
         <input name="search1" placeholder="name"/>
         <button>SEARCH</button>*@
-    <label>מתיולאן?</label>
-    <select name="from" class="form-control" asp-items="ViewBag.AppearanceAirportId"></select>
-    <select name="to" class="form-control" asp-items="ViewBag.LandingAirportId"></select>
+    <label>@*מתיולאן?*@</label>
+    <select name="from" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.AppearanceAirportId"></select>
+    <select name="to" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.LandingAirportId"></select>
     <input name="departure" type="date" placeholder="Departure" />
     <input name="passengers" placeholder="Passengers" />
-    <button>SEARCH</button>
-
+    <button class="btn btn-primary text-uppercase js-scroll-trigger">SEARCH</button>
+   
 
 </form>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+</p>*@
+@*<table class="table">*@
+    @*<thead>
         <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.AppppearanceDateTime)
@@ -58,10 +58,33 @@
             </th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
+    </thead>*@
+    @*<tbody>*@
 @foreach (var item in Model) {
-        <tr>
+    <div  style="margin: auto;
+    margin-top: 2vh;
+    display: flex;
+    width: 80%;
+    border-radius: 6px;
+    border: gray thin solid;">
+        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+            <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
+        </a>
+                        <div>
+                            <div>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.AppearanceTerminal)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.Price)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.TotalSeats)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.ReservedSeats)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes)</div>
+                            <div>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes)</div>
+                        </div>
+                    
+                </div>
+        @*<tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AppppearanceDateTime)
             </td>
@@ -97,10 +120,10 @@
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
-        </tr>
+        </tr>*@
 }
-    </tbody>
-</table>
+    @*</tbody>
+</table>*@
 
 @section Scripts{ 
 <script src="~/js/search.js"></script>
