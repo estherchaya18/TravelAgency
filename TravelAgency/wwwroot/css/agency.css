@@ -595,9 +595,11 @@ header.masthead .intro-text .intro-heading {
 }
 
 section#contact {
+    border-radius: 0 0 10px 10px;
+    background-color: beige;
+    color: #fed136;;
     width: 90%;
-    border-radius: 10px;
-    background-color: #212529;
+    padding: 50px 0;
     background-image: url(../images/map-image.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -605,9 +607,9 @@ section#contact {
     margin-left: auto;
 }
 
-section#contact .section-heading {
-  color: #fff;
-}
+    section#contact .section-heading {
+        color: #fed136;
+    }
 
 section#contact .form-group {
   margin-bottom: 25px;
