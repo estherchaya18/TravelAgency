@@ -23,15 +23,21 @@ namespace TravelAgency
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc();
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
 
             services.AddDbContext<TravelAgencyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("TravelAgencyContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSession();
+            app.UseMvc();
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -43,6 +49,7 @@ namespace TravelAgency
             }
 
             app.UseStaticFiles();
+
 
             app.UseMvc(routes =>
             {

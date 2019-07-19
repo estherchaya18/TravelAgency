@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,37 @@ namespace TravelAgency.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(clients);
+        }
+
+        public IActionResult Login()
+        {
+            ViewBag.Fail = false;
+
+
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([Bind("Id,Mail,Password")] Clients user)
+        {
+            var result = from u in _context.Clients
+                         where u.Mail == user.Mail && u.Password == user.Password
+                         select u;
+
+            if (result.ToList().Count > 0)
+            {
+                HttpContext.Session.SetString("user", user.Mail);
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Fail = true;
+
+
+
+            return View(user);
         }
 
         // GET: Clients/Edit/5
