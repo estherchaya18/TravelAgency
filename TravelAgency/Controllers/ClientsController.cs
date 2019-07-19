@@ -65,6 +65,29 @@ namespace TravelAgency.Controllers
             return View(clients);
         }
 
+        public IActionResult Register()
+        {
+            ViewBag.Fail = false;
+            return View();
+        }
+
+        // POST: Clients/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("Id,Mail,Password,Director")] Clients clients)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(clients);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Login");
+            }
+            ViewBag.Fail = true;
+            return View(clients);
+        }
+
         public IActionResult Login()
         {
             ViewBag.Fail = false;
