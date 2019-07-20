@@ -12,5 +12,7 @@ namespace TravelAgency.Models
         public string Name { get; set; }
 
         public ICollection<Flights> Flights { get; set; }
+
+       
     }
 }
