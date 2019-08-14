@@ -13,4 +13,44 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\about\1.jpg" />
+    <None Include="wwwroot\images\about\2.jpg" />
+    <None Include="wwwroot\images\about\3.jpg" />
+    <None Include="wwwroot\images\about\4.jpg" />
+    <None Include="wwwroot\images\airplane.jpg" />
+    <None Include="wwwroot\images\airplane1.jpg" />
+    <None Include="wwwroot\images\airplane2.jpg" />
+    <None Include="wwwroot\images\airplane3.jpg" />
+    <None Include="wwwroot\images\airplane4.jpg" />
+    <None Include="wwwroot\images\airplane5.jpg" />
+    <None Include="wwwroot\images\banner1.svg" />
+    <None Include="wwwroot\images\banner2.svg" />
+    <None Include="wwwroot\images\banner3.svg" />
+    <None Include="wwwroot\images\banner4.svg" />
+    <None Include="wwwroot\images\clouds-3526558__340.jpg" />
+    <None Include="wwwroot\images\Elal.png" />
+    <None Include="wwwroot\images\header-bg.jpg" />
+    <None Include="wwwroot\images\logos\creative-market.jpg" />
+    <None Include="wwwroot\images\logos\designmodo.jpg" />
+    <None Include="wwwroot\images\logos\envato.jpg" />
+    <None Include="wwwroot\images\logos\themeforest.jpg" />
+    <None Include="wwwroot\images\map-image.png" />
+    <None Include="wwwroot\images\portfolio\01-full.jpg" />
+    <None Include="wwwroot\images\portfolio\01-thumbnail.jpg" />
+    <None Include="wwwroot\images\portfolio\02-full.jpg" />
+    <None Include="wwwroot\images\portfolio\02-thumbnail.jpg" />
+    <None Include="wwwroot\images\portfolio\03-full.jpg" />
+    <None Include="wwwroot\images\portfolio\03-thumbnail.jpg" />
+    <None Include="wwwroot\images\portfolio\04-full.jpg" />
+    <None Include="wwwroot\images\portfolio\04-thumbnail.jpg" />
+    <None Include="wwwroot\images\portfolio\05-full.jpg" />
+    <None Include="wwwroot\images\portfolio\05-thumbnail.jpg" />
+    <None Include="wwwroot\images\portfolio\06-full.jpg" />
+    <None Include="wwwroot\images\portfolio\06-thumbnail.jpg" />
+    <None Include="wwwroot\images\team\1.jpg" />
+    <None Include="wwwroot\images\team\2.jpg" />
+    <None Include="wwwroot\images\team\3.jpg" />
+  </ItemGroup>
+
 </Project>
