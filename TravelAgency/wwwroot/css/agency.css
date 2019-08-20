@@ -3,11 +3,18 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-agency/blob/master/LICENSE)
  */
+header
+{
+color:black;
+}
 
 body {
     background-image:url('../images/take-off-1435962_1280.jpg');
+    background-color:transparent;
     background-repeat:round;
     overflow-x:hidden;
+    color:black;
+    text-shadow:inherit;
     font-family: 'Bradley Hand ITC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     
 {
@@ -15,11 +22,11 @@ body {
 }
 
 a {
-    color: #fed136;
+    color:red;
 }
 
     a:hover {
-        color: #fec503;
+        color:black;
     }
 
 .text-primary {
