@@ -4,32 +4,44 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
+ <form style="margin-right: auto;
+    width:fit-content;
+    font-size:large;
+    font-weight:100;
+    text-emphasis-color:brown;
+    margin-left: auto;
+    background-color:sienna;
+    padding: 10vh;
+    border-radius: 0 0 10px 10px;">
+    
+    <table class="table">
+        @*<thead>
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.AirportDetailes)
                 </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AirportDetailes)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <th></th>
+            </tr>
+        </thead>*@
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AirportDetailes)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
