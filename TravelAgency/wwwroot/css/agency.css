@@ -3,7 +3,9 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-agency/blob/master/LICENSE)
  */
-
+.bold {
+    font-weight: bold;
+}
 body {
     background-image:url('../images/take-off-1435962_1280.jpg');
     background-repeat:round;
@@ -711,3 +713,5 @@ ul.social-buttons li a {
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #fed136;
 }*/
+
+ 

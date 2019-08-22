@@ -1,0 +1,31 @@
+﻿@model TravelAgency.Models.Flights
+
+<div>
+
+    <div class="modal-header" style="    display: flex;
+    flex-direction: row-reverse;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Confirm order</h4>
+    </div>
+    <div>
+        <div style="display:flex">
+            <div style="margin-left:5vw">
+                <div style="font-weight:bold">Appaearance</div>
+                <div><label class="bold">Date:</label>  @Html.DisplayFor(model => model.AppppearanceDateTime)</div>
+                <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(model => model.AppearanceAirport.AirportDetailes) </div>
+                <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(model => model.AppearanceTerminal) </div>
+            </div>
+            <div style="margin-left:5vw">
+                <div style="font-weight:bold">Landing</div>
+                <div><label style="font-weight:bold">Date:</label>  @Html.DisplayFor(model => model.LandingDateTime)</div>
+                <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(model => model.LandingAirport.AirportDetailes) </div>
+                <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(model => model.LandingTerminal)</div>
+            </div>
+        </div>
+        <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
+            <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(model => model.Airlines.Name)</div>
+            <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(model => model.Price) $</div>
+        </div>
+    </div>
+    <button class="btn btn-primary text-uppercase js-scroll-trigger" style="margin:2vw">ORDER</button>
+</div>

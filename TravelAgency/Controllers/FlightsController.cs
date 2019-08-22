@@ -23,7 +23,7 @@ namespace TravelAgency.Controllers
         public async Task<IActionResult> Index(string from,string to,DateTime departure,int passengers)
         {
             var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
-                .Where(flight => flight.AppearanceAirportId.ToString()== from && flight.LandingAirportId.ToString()==to && flight.AppppearanceDateTime.Date==departure.Date);
+                .Where(flight => flight.AppearanceAirportId.ToString()== from && flight.LandingAirportId.ToString()==to && flight.AppppearanceDateTime.Date==departure.Date && (flight.TotalSeats-flight.ReservedSeats)>=passengers);
            //return View(await travelAgencyContext.ToListAsync());
             ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
             ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
@@ -173,6 +173,15 @@ namespace TravelAgency.Controllers
         private bool FlightsExists(int id)
         {
             return _context.Flights.Any(e => e.Id == id);
+        }
+
+        public ActionResult ConfirmOrder(int Id)
+        {
+            Flights flight = new Flights();
+            flight = _context.Flights.Include(f => f.Airlines)
+                .Include(f => f.AppearanceAirport).Include(f => f.LandingAirport).Where(f => f.Id == Id).First();
+           
+            return PartialView("_ConfirmOrder", flight);
         }
     }
 }

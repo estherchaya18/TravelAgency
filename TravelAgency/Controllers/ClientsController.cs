@@ -7,6 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TravelAgency.Models;
+using System.Web;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Xml.Linq;
+using System.Data.SqlClient;
+using System.IO;
+using System.Text;
 
 namespace TravelAgency.Controllers
 {
@@ -107,9 +115,12 @@ namespace TravelAgency.Controllers
 
             if (result.ToList().Count > 0)
             {
-                HttpContext.Session.SetString("user", user.Mail);
-
-                return RedirectToAction(nameof(Index));
+                HttpContext.Session.SetString("userName", user.Mail);
+                ViewBag.userName = HttpContext.Session.GetString("userName");
+                //HttpContext.Session.["userName"] =user.Mail;
+                //ViewBag.userName = HttpContext.Session.GetString("user");
+                ViewBag.IsDirector = result.First().Director;
+                return View("Index", await _context.Clients.ToListAsync());
             }
 
             ViewBag.Fail = true;

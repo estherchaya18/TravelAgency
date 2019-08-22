@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
+
 @*<h2>Index</h2>*@
 @*כותבים FORM  כדי שהוא יודע להחזיר את המידע לקונטרולר*@
 <form style="margin-right: auto;
@@ -30,7 +31,14 @@
 
 
 </form>
+<div id='myModal' class='modal fade'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
 
+</div>
 @*<p>
         <a asp-action="Create">Create New</a>
     </p>*@
@@ -74,27 +82,44 @@
 @foreach (var item in Model)
 {
     <div style="margin: auto;
+background-color:beige;
     margin-top: 2vh;
     display: flex;
-    width: 80%;
-    border: gray thin solid;">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+    width: 80%;">
+        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
             <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
         </a>
         <div>
-            <div>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
-            <div>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
-            <div>  @Html.DisplayFor(modelItem => item.AppearanceTerminal)</div>
-            <div>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
-            <div>  @Html.DisplayFor(modelItem => item.Price)</div>
-            <div>  @Html.DisplayFor(modelItem => item.TotalSeats)</div>
-            <div>  @Html.DisplayFor(modelItem => item.ReservedSeats)</div>
-            <div>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
-            <div>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes)</div>
-            <div>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes)</div>
+            <div style="display:flex">
+                <div style="margin-left:5vw">
+                    <div style="font-weight:bold">Appaearance</div>
+                    <div><label class="bold">Date:</label>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
+                    <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes) </div>
+                    <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.AppearanceTerminal) </div>
+                </div>
+                <div style="margin-left:5vw">
+                    <div style="font-weight:bold">Landing</div>
+                    <div><label style="font-weight:bold">Date:</label>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
+                    <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes) </div>
+                    <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
+                </div>
+            </div>
+            <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
+                <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
+                <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
+                <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
+                @*<div>  @Html.DisplayFor(modelItem => item.TotalSeats)</div>
+                    <div>  @Html.DisplayFor(modelItem => item.ReservedSeats)</div>*@
+            </div>
+
         </div>
 
     </div>
+
+
+
+
+
     @*<tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AppppearanceDateTime)
@@ -133,9 +158,16 @@
             </td>
         </tr>*@
 }
+
+
+
 @*</tbody>
     </table>*@
 
+
+
+
 @section Scripts{
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/search.js"></script>
 }

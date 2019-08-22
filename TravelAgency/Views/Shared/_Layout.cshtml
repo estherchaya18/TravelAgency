@@ -1,4 +1,5 @@
 ﻿
+@using System.Web;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +9,23 @@
     <meta name="author" content="">
     <title>Travel agency</title>
     <!-- Bootstrap core CSS -->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
     <!-- Custom fonts for this template -->
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="manifest" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='logo' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='preload' type='text/css'>
- <!--    Custom styles for this template -->
+    <!--    Custom styles for this template -->
     <link href="~/css/agency.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:bisque">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" asp-controller="Flights" asp-action="Index">Travel agency</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,12 +52,39 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="~/Home/Contact">Contact</a>
                     </li>
-                    <li style="margin-left: 6vw;" class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="~/Clients/Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="~/Clients/Register">Register</a>
-                    </li>
+                    @*@if (@HttpContext.Session.GetString("userName") != null && @HttpContext.Session.GetString.ToString() != "")
+        {
+        <li>@HttpContext.Session.GetString("userName")</li>
+
+        }
+        else
+        {
+            <li style="margin-left: 6vw;" class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="~/Clients/Login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="~/Clients/Register">Register</a>
+            </li>
+
+        }*@
+
+                    @if (ViewData["userName"] != null && ViewData["userName"].ToString() != "")
+                    {
+                        <li style="margin-left: 6vw;" class="nav-item">
+                            <a class="nav-link js-scroll-trigger">Hello, @ViewData["userName"]</a>
+                        </li>
+                        @*<li>@Html.ActionLink("Logout", "Logout", "Home")</li>*@
+                    }
+                    else
+                    {
+                        <li style="margin-left: 6vw;" class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="~/Clients/Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="~/Clients/Register">Register</a>
+                        </li>
+
+                    }
                 </ul>
             </div>
         </div>
