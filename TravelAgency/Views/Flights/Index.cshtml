@@ -32,19 +32,20 @@
 
 </form>
 
-<div id='myModal' class='modal fade'>
+@*<@*div id='myModal' class='modal fade'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div id='myModalContent'></div>
         </div>
     </div>
 
-</div>
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
-@*<table class="table">*@
-@*<thead>
+</div>*@
+<p>
+        <a asp-action="Create" style="color:indigo;font-size:x-large;">Create New </a>
+    </p>
+
+<table class="table" style="background-color:sandybrown;">
+<thead>
         <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.AppppearanceDateTime)
@@ -78,12 +79,13 @@
             </th>
             <th></th>
         </tr>
-    </thead>*@
-@*<tbody>*@
-@foreach (var item in Model)
-{
+    </thead>
+<tbody>
+
+ @foreach (var item in Model)
+ {
     <div style="margin: auto;
-background-color:beige;
+background-color:sandybrown;
     margin-top: 2vh;
     display: flex;
     width: 80%;">
@@ -109,8 +111,8 @@ background-color:beige;
                 <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
                 <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
                 <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
-                @*<div>  @Html.DisplayFor(modelItem => item.TotalSeats)</div>
-                    <div>  @Html.DisplayFor(modelItem => item.ReservedSeats)</div>*@
+                <div>  @Html.DisplayFor(modelItem => item.TotalSeats)</div>
+                    <div>  @Html.DisplayFor(modelItem => item.ReservedSeats)</div>
             </div>
 
         </div>
@@ -120,8 +122,8 @@ background-color:beige;
 
 
 
-
-    @*<tr>
+    <div>
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AppppearanceDateTime)
             </td>
@@ -157,18 +159,17 @@ background-color:beige;
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
-        </tr>*@
-}
+        </tr>
+        </div>
+        }
+        }
+        </tbody>
+        </table>
 
 
 
-@*</tbody>
-    </table>*@
 
+        @section Scripts{
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>}
 
-
-
-@section Scripts{
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/search.js"></script>
-}
+    </div>

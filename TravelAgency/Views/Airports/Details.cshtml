@@ -2,23 +2,33 @@
 
 @{
     ViewData["Title"] = "Details";
-}
+} 
+ <div class="active" style="margin-right: auto;
+    width:fit-content;
+    font-size:large;
+    font-weight:100;
+    text-emphasis-color:brown;
+    margin-left: auto;
+    background-color:sandybrown;
+    color:black;
+    padding: 10vh;
+    border-radius: 0 0 10px 10px;">
+    <h2>Details</h2>
 
-<h2>Details</h2>
-
-<div>
     <h4>Airports</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AirportDetailes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AirportDetailes)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="row" style="background-color:sandybrown;color:black; >
+        <div class="col-md-4" style="background-color:sandybrown;color:black;">
+            <dl class="dl-horizontal" style="background-color:sandybrown;color:black;">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AirportDetailes)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.AirportDetailes)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>

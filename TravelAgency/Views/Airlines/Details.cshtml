@@ -4,28 +4,30 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
 
-<div   style="margin-right:auto;
+
+    <div style="margin-right:auto;
                      width:fit-content;
                      font-size:large;
                      font-weight:100;
                      text-emphasis-color:brown;
                      margin-left: auto;
-                     background-color:sienna;
+                     background-color:sandybrown;
                      padding: 10vh;
                      border-radius: 0 0 10px 10px;">
-    <h4>Airlines</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
+        <h2>Details</h2>
+        <h4>Airlines</h4>
+        <hr />
+
+        @*<dl class="dl-horizontal">*@
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+    </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

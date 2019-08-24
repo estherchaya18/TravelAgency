@@ -4,40 +4,42 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
 
-<h4>Airlines</h4>
-<hr />
-<div class="row"   style="margin-right:auto;
+    <div style="background-color:sandybrown;color:black;">
+        <h2>Edit</h2>
+
+        <h4>Airlines</h4>
+        <hr />
+
+            <form asp-action="Edit" style="margin-right:auto;
                      font-size:large;
-                     width:fit-content;
+                    /*width:fit-content;*/
                      font-weight:100;
                      text-emphasis-color:brown;
                      margin-left: auto;
-                     background-color:sienna;
+                     background-color:sandybrown;
                      padding: 10vh;
                      border-radius: 0 0 10px 10px;">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-        <img src="~/Views/Airlines/clouds-3526558__340.jpg" />
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>     
+    </div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</div>

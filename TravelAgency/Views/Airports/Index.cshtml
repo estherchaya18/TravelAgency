@@ -9,25 +9,29 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
- <form style="margin-right: auto;
+<form style="margin-right: auto;
     width:fit-content;
     font-size:large;
     font-weight:100;
     text-emphasis-color:brown;
     margin-left: auto;
-    background-color:sienna;
+    background-color:sandybrown;
+    color:black;
     padding: 10vh;
     border-radius: 0 0 10px 10px;">
-    
+    <p>
+        <a asp-action="Create" style="color:indigo; font-size:larger;">Create New</a>
+    </p>
+
     <table class="table">
         @*<thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.AirportDetailes)
-                </th>
-                <th></th>
-            </tr>
-        </thead>*@
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AirportDetailes)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>*@
         <tbody>
             @foreach (var item in Model)
             {
