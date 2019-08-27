@@ -3,33 +3,42 @@
 @{
     ViewData["Title"] = "Details";
 }
+    <div style="margin-right: auto;
+    width:fit-content;
+    font-size:large;
+    font-weight:100;
+    text-emphasis-color:brown;
+    margin-left: auto;
+    background-color:sandybrown;
+    color:brown;
+    padding: 10vh;
+    border-radius: 0 0 10px 10px;">
+        <h2>Details</h2>
 
-<h2>Details</h2>
 
-<div>
-    <h4>Clients</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Mail)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Mail)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Director)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Director)
-        </dd>
-    </dl>
-</div>
+        <h4>Clients</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Mail)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Mail)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Director)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Director)
+            </dd>
+        </dl>
+    </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

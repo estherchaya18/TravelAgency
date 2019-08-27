@@ -4,27 +4,38 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+    <div style="margin-right: auto;
+    width:fit-content;
+    font-size:large;
+    font-weight:100;
+    text-emphasis-color:brown;
+    margin-left: auto;
+    color:brown;
+    background-color:sandybrown;
+    padding: 10vh;
+    border-radius: 0 0 10px 10px;">
+        <h2>Edit</h2>
 
-<h4>OrderPassagers</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PassangerId" />
-            <input type="hidden" asp-for="OrderId" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <h4>OrderPassagers</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="PassangerId" />
+                    <input type="hidden" asp-for="OrderId" />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

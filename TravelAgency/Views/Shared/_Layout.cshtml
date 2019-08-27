@@ -34,55 +34,38 @@
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
-            <strong style="all:unset;visibility:visible; background:center;">
-                <div style="font-size:large;font-family:Stencil;" class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item" style="color:black;">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Airlines">Airlines</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Airports">Airports</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Clients">Clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/OrderPassagers">OrderPassagers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Home/About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Home/Contact">Contact</a>
-                        </li>
-                        <li style="margin-left: 6vw;" class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Clients/Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Clients/Register">Register</a>
-                        </li>      
-                        @*@if (@HttpContext.Session.GetString("userName") != null && @HttpContext.Session.GetString.ToString() != "")
-                            {
-                            <li>@HttpContext.Session.GetString("userName")</li>
-
-                            }
-                            else
-                            {
-                                <li style="margin-left: 6vw;" class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="~/Clients/Login">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="~/Clients/Register">Register</a>
-                                </li>
-
-                            }*@
-
-                        @if (ViewData["userName"] != null && ViewData["userName"].ToString() != "")
-                        {
-                            <li style="margin-left: 6vw;" class="nav-item">
-                                <a class="nav-link js-scroll-trigger">Hello, @ViewData["userName"]</a>
+            <body>
+                <strong style="all:unset;visibility:visible; background:center;">
+                    <div style="font-size:large;font-family:Stencil;" class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav text-uppercase ml-auto">
+                            <li class="nav-item" style="color:black;">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Airlines">Airlines</a>
                             </li>
-                            @*<li>@Html.ActionLink("Logout", "Logout", "Home")</li>*@
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Airports">Airports</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Clients">Clients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/OrderPassagers">OrderPassagers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Home/About">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Home/Contact">Contact</a>
+                            </li>
+                            <li style="margin-left: 6vw;" class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Clients/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" style="color:black;font-size:larger;" href="~/Clients/Register">Register</a>
+                            </li>
+                            @*@if (@HttpContext.Session.GetString("userName") != null && @HttpContext.Session.GetString.ToString() != "")
+                        {
+                        <li>@HttpContext.Session.GetString("userName")</li>
+
                         }
                         else
                         {
@@ -93,9 +76,27 @@
                                 <a class="nav-link js-scroll-trigger" href="~/Clients/Register">Register</a>
                             </li>
 
-                        }
-                    </ul>
-                </div>
+                        }*@
+            </body>
+            @if (ViewData["userName"] != null && ViewData["userName"].ToString() != "")
+            {
+                <li style="margin-left: 6vw;" class="nav-item">
+                    <a class="nav-link js-scroll-trigger">Hello, @ViewData["userName"]</a>
+                </li>
+                @*<li>@Html.ActionLink("Logout", "Logout", "Home")</li>*@
+            }
+            else
+            {
+                <li style="margin-left: 6vw;" class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="~/Clients/Login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="~/Clients/Register">Register</a>
+                </li>
+
+            }
+            </ul>
+        </div>
         </div>
     </nav>
    

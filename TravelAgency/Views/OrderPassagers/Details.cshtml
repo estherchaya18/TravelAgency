@@ -3,28 +3,38 @@
 @{
     ViewData["Title"] = "Details";
 }
+    <div style="margin-right: auto;
+    width:fit-content;
+    font-size:large;
+    font-weight:100;
+    text-emphasis-color:brown;
+    margin-left: auto;
+    color:brown;
+    background-color:sandybrown;
+    padding: 10vh;
+    border-radius: 0 0 10px 10px;">
+        <h2>Details</h2>
 
-<h2>Details</h2>
-
-<div>
-    <h4>OrderPassagers</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Order)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Order.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Passanger)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Passanger.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div>
+            <h4>OrderPassagers</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Id)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Passanger)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Passanger.Id)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
