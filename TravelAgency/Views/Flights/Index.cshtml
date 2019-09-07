@@ -1,74 +1,35 @@
 ﻿@model IEnumerable<TravelAgency.Models.Flights>
-
 @{
     ViewData["Title"] = "Index";
 }
-
-
-@*<h2>Index</h2>*@
-@*כותבים FORM  כדי שהוא יודע להחזיר את המידע לקונטרולר*@
-<form style="margin-right: auto;
-    width: fit-content;
-    margin-left: auto;
-    background-color:sandybrown;
-    color:brown;
-    padding: 10vh;
-    border-radius: 0 0 10px 10px;">
-    <div class="secondary-title js-scroll-trigger"
-         style="font-weight: bold;
-    font-size: x-large;
-    display: block;
-    padding: 0 5px 10px 5px;
-    color: brown;">Search a flight:</div>
-    @*<label>enter e</label>
-        <input name="search1" placeholder="name"/>
-        <button>SEARCH</button>*@
-    <label>@*מתיולאן?*@</label>
-    <select name="from" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.AppearanceAirportId"></select>
-    <select name="to" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.LandingAirportId"></select>
-    <input name="departure" type="date" placeholder="Departure" />
-    <input name="passengers" placeholder="Passengers" />
-    <button class="btn btn-primary text-uppercase js-scroll-trigger">SEARCH</button>
-
-
-</form>
-
-@*<@*div id='myModal' class='modal fade'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
-        </div>
-    </div>
-
-</div>*@
+<h2>Index</h2>
 <p>
-        <a asp-action="Create" style="color:indigo;font-size:x-large;">Create New </a>
-    </p>
-
-<table class="table"  style="background-color:sandybrown;color:brown;">
-<thead>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.AppppearanceDateTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LandingDateTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AppearanceTerminal)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LandingTerminal)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TotalSeats)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReservedSeats)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppppearanceDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandingDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppearanceTerminal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandingTerminal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReservedSeats)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Airlines)
             </th>
@@ -81,49 +42,9 @@
             <th></th>
         </tr>
     </thead>
-<tbody>
-
- @foreach (var item in Model)
- {
-    <div style="margin: auto;
-background-color:sandybrown;
-    margin-top: 2vh;
-    display: flex;
-    width: 80%;">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-            <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
-        </a>
-        <div>
-            <div style="display:flex">
-                <div style="margin-left:5vw">
-                    <div style="font-weight:bold">Appaearance</div>
-                    <div><label class="bold">Date:</label>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
-                    <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes) </div>
-                    <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.AppearanceTerminal) </div>
-                </div>
-                <div style="margin-left:5vw">
-                    <div style="font-weight:bold">Landing</div>
-                    <div><label style="font-weight:bold">Date:</label>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
-                    <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes) </div>
-                    <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
-                </div>
-            </div>
-            <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
-                <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
-                <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
-                <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
-                <div>  @Html.DisplayFor(modelItem => item.TotalSeats)</div>
-                    <div>  @Html.DisplayFor(modelItem => item.ReservedSeats)</div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-
-    <div>
+    <tbody>
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AppppearanceDateTime)
@@ -161,16 +82,6 @@ background-color:sandybrown;
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-        </div>
         }
-        }
-        </tbody>
-        </table>
-
-
-
-
-        @section Scripts{
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>}
-
-    </div>
+    </tbody>
+</table>

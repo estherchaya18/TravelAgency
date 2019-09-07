@@ -20,12 +20,13 @@ $(function () {
     $(".btnLink").click(function () {
         var $buttonClicked = $(this);
         var id = $buttonClicked.attr('data-id');
+        var pasangers = $("#passangers").text();
         var options = { "backdrop": "static", keyboard: true };
         $.ajax({
             type: "GET",
             url: TeamDetailPostBackURL,
             contentType: "application/json; charset=utf-8",
-            data: { "Id": id },
+            data: { "Id": id, "passangers": pasangers },
             datatype: "json",
             success: function (data) {
                 $('#myModalContent').html(data);

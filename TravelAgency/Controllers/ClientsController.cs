@@ -99,10 +99,15 @@ namespace TravelAgency.Controllers
         public IActionResult Login()
         {
             ViewBag.Fail = false;
-
-
-
             return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+                //HttpContext.Session.SetString("userId", (result.First().Id).ToString());
+            HttpContext.Session.Clear();
+                return RedirectToAction("Index", "Home");
+            
         }
 
         [HttpPost]
@@ -115,12 +120,13 @@ namespace TravelAgency.Controllers
 
             if (result.ToList().Count > 0)
             {
-                HttpContext.Session.SetString("userName", user.Mail);
-                ViewBag.userName = HttpContext.Session.GetString("userName");
-                //HttpContext.Session.["userName"] =user.Mail;
-                //ViewBag.userName = HttpContext.Session.GetString("user");
-                ViewBag.IsDirector = result.First().Director;
-                return View("Index", await _context.Clients.ToListAsync());
+                HttpContext.Session.SetString("userId", (result.First().Id).ToString());
+                if (HttpContext.Session.GetString("userId") != null)
+                {
+                    ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                    ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+                }
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.Fail = true;
@@ -213,6 +219,36 @@ namespace TravelAgency.Controllers
         private bool ClientsExists(int id)
         {
             return _context.Clients.Any(e => e.Id == id);
+        }
+
+        public override ViewResult View()
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.View();
+        }
+
+        public override ViewResult View(object model)
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.View(model);
+        }
+
+        public override RedirectToActionResult RedirectToAction(string actionName)
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.RedirectToAction(actionName);
         }
     }
 }

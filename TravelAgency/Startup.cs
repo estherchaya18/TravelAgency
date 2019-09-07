@@ -56,7 +56,7 @@ namespace TravelAgency
                 routes.MapRoute(
                     name: "default",
                     //הגדרת דף נחיתה לדף של FLIGHTS
-                    template: "{controller=Flights}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

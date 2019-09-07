@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -147,6 +148,43 @@ namespace TravelAgency.Controllers
         private bool OrderExists(int id)
         {
             return _context.Order.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> OrderHistory()
+        {
+            var currentUserID = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Id;
+            var UserOrderHistory = _context.Order.Where(o => o.ClientId == currentUserID);
+            return View(await UserOrderHistory.ToListAsync());
+        }
+
+        public override ViewResult View()
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.View();
+        }
+
+        public override ViewResult View(object model)
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.View(model);
+        }
+
+        public override RedirectToActionResult RedirectToAction(string actionName)
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.RedirectToAction(actionName);
         }
     }
 }

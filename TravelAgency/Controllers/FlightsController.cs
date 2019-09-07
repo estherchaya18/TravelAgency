@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,17 +19,9 @@ namespace TravelAgency.Controllers
             _context = context;
         }
 
-        // GET: Flights
-        //קבלת המידע מהויו שהגדרנו בעזרת התגית FORM
-        public async Task<IActionResult> Index(string from,string to,DateTime departure,int passengers)
+        public async Task<IActionResult> Index()
         {
-            var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
-                .Where(flight => flight.AppearanceAirportId.ToString()== from && flight.LandingAirportId.ToString()==to && flight.AppppearanceDateTime.Date==departure.Date && (flight.TotalSeats-flight.ReservedSeats)>=passengers);
-           //return View(await travelAgencyContext.ToListAsync());
-            ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
-            ViewData["LandingAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
-
-      
+            var travelAgencyContext = _context.Flights.Include(f => f.Airlines);
             return View(await travelAgencyContext.ToListAsync());
         }
 
@@ -175,13 +168,43 @@ namespace TravelAgency.Controllers
             return _context.Flights.Any(e => e.Id == id);
         }
 
-        public ActionResult ConfirmOrder(int Id)
+        public ActionResult ConfirmOrder(int Id, int passangers)
         {
             Flights flight = new Flights();
             flight = _context.Flights.Include(f => f.Airlines)
                 .Include(f => f.AppearanceAirport).Include(f => f.LandingAirport).Where(f => f.Id == Id).First();
-           
+            ViewData["passengers"] = passangers;
             return PartialView("_ConfirmOrder", flight);
+        }
+
+        public override ViewResult View()
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.View();
+        }
+
+        public override ViewResult View(object model)
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.View(model);
+        }
+
+        public override RedirectToActionResult RedirectToAction(string actionName)
+        {
+            if (HttpContext.Session.GetString("userId") != null)
+            {
+                ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
+                ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
+            }
+            return base.RedirectToAction(actionName);
         }
     }
 }

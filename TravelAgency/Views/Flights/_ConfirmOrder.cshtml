@@ -27,5 +27,10 @@
             <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(model => model.Price) $</div>
         </div>
     </div>
+    @for (int i = 0; i < ViewBag.passengers; i++)
+    {
+        <hr />
+        <div>passanger @i</div>
+    }
     <button class="btn btn-primary text-uppercase js-scroll-trigger" style="margin:2vw">ORDER</button>
 </div>
