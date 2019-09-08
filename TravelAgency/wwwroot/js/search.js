@@ -15,7 +15,7 @@ $(document).ready(function () {
 //    })
 //});
 
-var TeamDetailPostBackURL = '/Flights/ConfirmOrder';
+
 $(function () {
     $(".btnLink").click(function () {
         var $buttonClicked = $(this);
@@ -24,7 +24,7 @@ $(function () {
         var options = { "backdrop": "static", keyboard: true };
         $.ajax({
             type: "GET",
-            url: TeamDetailPostBackURL,
+            url: '/Flights/ConfirmOrder',
             contentType: "application/json; charset=utf-8",
             data: { "Id": id, "passangers": pasangers },
             datatype: "json",
@@ -33,6 +33,37 @@ $(function () {
                 $('#myModal').modal(options);
                 $('#myModal').modal('show');
 
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+    //$("#closebtn").on('click',function(){  
+    //    $('#myModal').modal('hide');    
+
+    $("#closbtn").click(function () {
+        $('#myModal').modal('hide');
+    });
+});  
+
+$(function () {
+    $("#SortFaster, #SortPrice").click(function () {
+        var $buttonClicked = $(this);
+        var sortBy = $buttonClicked.attr('data-id');
+        var from = $("#from").text();
+        var to = $("#to").text();
+        var departure = $("#departure").text();
+        var pasangers = $("#passangers").text();
+        var options = { "backdrop": "static", keyboard: true };
+        $.ajax({
+            type: "GET",
+            url: '/Flights/SortList',
+            contentType: "application/json; charset=utf-8",
+            data: { "sortOrder": sortBy, "from": from, "to": to, "departure": departure, "passengers": pasangers },
+            datatype: "json",
+            success: function (data) {
+                $('#flights').html(data);
             },
             error: function () {
                 alert("Dynamic content load failed.");

@@ -3,39 +3,110 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
-
-
+<script src="~/js/flatpickr.js"></script>
 @*כותבים FORM  כדי שהוא יודע להחזיר את המידע לקונטרולר*@
-<form style="margin-right: auto;
-    width: fit-content;
-    margin-left: auto;
-    background-color:sandybrown;
-    color:brown;
-    padding: 10vh;
-    border-radius: 0 0 10px 10px;">
-    <div class="secondary-title js-scroll-trigger"
-         style="font-weight: bold;
-    font-size: x-large;
-    display: block;
-    padding: 0 5px 10px 5px;
-    color: brown;">Search a flight:</div>
-    @if (ViewBag.passangers != null && ViewBag.passangers != 0)
-    {
-        <div>@ViewBag.searchDetails</div>
-        <div id="passangers">@ViewBag.passangers</div>
-    }
-    else
-    {
-        <select name="from" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.AppearanceAirportId"></select>
-        <select name="to" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.LandingAirportId"></select>
-        <input name="departure" type="date" placeholder="Departure" />
-        <input name="passengers" placeholder="Passengers" />
-        <button class="btn btn-primary text-uppercase js-scroll-trigger">SEARCH</button>
-    }
-</form>
+<div class="s002">
+    <form>
+        <fieldset>
+            <legend>SEARCH Flight</legend>
+        </fieldset>
+        <div class="inner-form">
+            @if (ViewBag.passangers != null && ViewBag.passangers != 0)
+            {
+                <div style="background-color:white">
+                    <div id="from">@ViewBag.from</div>
+                    <div id="to">@ViewBag.to</div>
+                    <div id="departure">@ViewBag.departure</div>
+                    <div id="passangers">@ViewBag.passangers</div>
+                </div>
+            }
+            else
+            {
+                <div class="input-field first-wrap">
+                    <div class="searchDescription">From</div>
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                        </svg>
+                    </div>
+                    @*<input id="search" type="text" placeholder="What are you looking for?" />*@
+                    <select name="from" asp-items="ViewBag.AppearanceAirportId"></select>
+                </div>
+                <div class="input-field first-wrap">
+                    <div class="searchDescription">To</div>
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                        </svg>
+                    </div>
+                    @*<input id="search" type="text" placeholder="What are you looking for?" />*@
+                    <select name="to" asp-items="ViewBag.LandingAirportId"></select>
+                </div>
+                <div class="input-field second-wrap">
+                    <div class="searchDescription">Depart</div>
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
+                        </svg>
+                    </div>
+                    <input name="departure" class="datepicker" id="depart" type="text" placeholder="29 Aug 2018" />
+                    @*<input name="departure" type="date" placeholder="Departure" />*@
+                </div>
+                <div class="input-field fouth-wrap">
+                    <div class="searchDescription">Passangers</div>
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                        </svg>
+                    </div>
+                    @*<select data-trigger="" name="choices-single-defaul">
+                            <option placeholder="">2 Adults</option>
+                            <option>3 Adults</option>
+                            <option>4 Adults</option>
+                            <option>5 Adults</option>
+                        </select>*@
+                    <input name="passengers" placeholder="Passengers" />
+                </div>
+                <div class="input-field fifth-wrap">
+                    <div style="visibility:hidden">Search</div>
+                    <button class="btn-search">SEARCH</button>
+                </div>
+            }
+        </div>
+    </form>
+
+</div>
 
 
+@*<form style="margin-right: auto;
+        width: fit-content;
+        margin-left: auto;
+        background-color:sandybrown;
+        color:brown;
+        padding: 10vh;
+        border-radius: 0 0 10px 10px;">
+        <div class="secondary-title js-scroll-trigger"
+             style="font-weight: bold;
+        font-size: x-large;
+        display: block;
+        padding: 0 5px 10px 5px;
+        color: brown;">Search a flight:</div>
+        @if (ViewBag.passangers != null && ViewBag.passangers != 0)
+        {
+            <div id="from">@ViewBag.from</div>
+            <div id="to">@ViewBag.to</div>
+            <div id="departure">@ViewBag.departure</div>
+            <div id="passangers">@ViewBag.passangers</div>
+        }
+        else
+        {
+            <select name="from" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.AppearanceAirportId"></select>
+            <select name="to" class="form-control" style="width:auto;display:inline-block" asp-items="ViewBag.LandingAirportId"></select>
+            <input name="departure" type="date" placeholder="Departure" />
+            <input name="passengers" placeholder="Passengers" />
+            <button class="btn btn-primary text-uppercase js-scroll-trigger">SEARCH</button>
+        }
+    </form>*@
 
 <div id='myModal' class='modal fade'>
     <div class="modal-dialog">
@@ -44,36 +115,42 @@
         </div>
     </div>
 </div>
-
-@foreach (var item in Model)
+@if (ViewBag.passangers != null && ViewBag.passangers != 0)
 {
-    <div style="margin: auto;background-color:sandybrown;margin-top: 2vh;display: flex;width: 80%;">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-            <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
-        </a>
-        <div>
-            <div style="display:flex">
-                <div style="margin-left:5vw">
-                    <div style="font-weight:bold">Appaearance</div>
-                    <div><label class="bold">Date:</label>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
-                    <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes) </div>
-                    <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.AppearanceTerminal) </div>
+    <button data-id="Price" class="btn btn-primary text-uppercase js-scroll-trigger" id="SortPrice">Sort by price</button>
+    <button data-id="Fastest" class="btn btn-primary text-uppercase js-scroll-trigger" id="SortFaster">Sort by Faster</button>
+}
+<div id="flights">
+    @foreach (var item in Model)
+    {
+        <div style="margin: auto;background-color:sandybrown;margin-top: 2vh;display: flex;width: 80%;">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
+            </a>
+            <div>
+                <div style="display:flex">
+                    <div style="margin-left:5vw">
+                        <div style="font-weight:bold">Appaearance</div>
+                        <div><label class="bold">Date:</label>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
+                        <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes) </div>
+                        <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.AppearanceTerminal) </div>
+                    </div>
+                    <div style="margin-left:5vw">
+                        <div style="font-weight:bold">Landing</div>
+                        <div><label style="font-weight:bold">Date:</label>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
+                        <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes) </div>
+                        <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
+                    </div>
                 </div>
-                <div style="margin-left:5vw">
-                    <div style="font-weight:bold">Landing</div>
-                    <div><label style="font-weight:bold">Date:</label>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
-                    <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes) </div>
-                    <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
+                <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
+                    <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
+                    <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
+                    <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
                 </div>
-            </div>
-            <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
-                <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
-                <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
-                <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
             </div>
         </div>
-    </div>
-}
+    }
+</div>
 
 
 
@@ -82,4 +159,12 @@
 @section Scripts{
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/search.js"></script>
+    <script src="~/js/custom-materialize.js"></script>
+    <script src="~/js/flatpickr.js"></script>
 }
+
+<script>
+    flatpickr(".datepicker",
+        {});
+
+</script>

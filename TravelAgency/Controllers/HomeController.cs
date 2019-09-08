@@ -24,8 +24,11 @@ namespace TravelAgency.Controllers
         {
             var travelAgencyContext = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
                 .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to && flight.AppppearanceDateTime.Date == departure.Date && (flight.TotalSeats - flight.ReservedSeats) >= passengers);
+
             //return View(await travelAgencyContext.ToListAsync());
-            ViewData["searchDetails"] = "search a flight from " + from + " to " + to + " in date " + departure;
+            ViewData["from"] = from;
+            ViewData["to"] = to;
+            ViewData["departure"] = departure.Date.ToShortDateString();
             ViewData["passangers"] = passengers;
 
             ViewData["AppearanceAirportId"] = new SelectList(_context.Airports, "Id", "AirportDetailes");
@@ -67,7 +70,7 @@ namespace TravelAgency.Controllers
         public override ViewResult View()
         {
             if (HttpContext.Session.GetString("userId") != null)
-            { 
+            {
                 ViewBag.userName = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Mail;
                 ViewBag.IsDirector = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Director;
             }
@@ -83,6 +86,6 @@ namespace TravelAgency.Controllers
             }
             return base.View(model);
         }
-        
+
     }
 }

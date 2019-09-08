@@ -168,13 +168,35 @@ namespace TravelAgency.Controllers
             return _context.Flights.Any(e => e.Id == id);
         }
 
+        public async Task<IActionResult> SortList(string sortOrder, string from, string to, string departure, int passengers)
+        {
+            var flightsSearch = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
+                         .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to &&flight.AppppearanceDateTime.Date.ToShortDateString() == departure &&  (flight.TotalSeats - flight.ReservedSeats) >= passengers)
+                         .OrderBy(f => f.Id);
+            
+            switch (sortOrder)
+            {
+                case "Price":
+                    flightsSearch = flightsSearch.OrderBy(s => s.Price);
+                    break;
+                case "Fastest":
+                    flightsSearch = flightsSearch.OrderBy(s => (s.LandingDateTime - s.AppppearanceDateTime).TotalSeconds);
+                    break;
+                default:
+                    //flights = flights;
+                    break;
+            }
+            if (flightsSearch == null)
+                return View(new List<Flights>());
+            return PartialView("_SortList", await flightsSearch.ToListAsync());
+        }
+
         public ActionResult ConfirmOrder(int Id, int passangers)
         {
-            Flights flight = new Flights();
-            flight = _context.Flights.Include(f => f.Airlines)
+            var flights = _context.Flights.Include(f => f.Airlines)
                 .Include(f => f.AppearanceAirport).Include(f => f.LandingAirport).Where(f => f.Id == Id).First();
             ViewData["passengers"] = passangers;
-            return PartialView("_ConfirmOrder", flight);
+            return PartialView("_ConfirmOrder", flights);
         }
 
         public override ViewResult View()
