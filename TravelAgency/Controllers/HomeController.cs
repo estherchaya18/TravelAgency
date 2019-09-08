@@ -26,8 +26,9 @@ namespace TravelAgency.Controllers
                 .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to && flight.AppppearanceDateTime.Date == departure.Date && (flight.TotalSeats - flight.ReservedSeats) >= passengers);
 
             //return View(await travelAgencyContext.ToListAsync());
-            ViewData["from"] = from;
-            ViewData["to"] = to;
+            
+            ViewData["from"] = from!=null? _context.Airports.Find(int.Parse(from)).AirportDetailes.ToString():from;
+            ViewData["to"] = from!= null ? _context.Airports.Find(int.Parse(to)).AirportDetailes.ToString():to;
             ViewData["departure"] = departure.Date.ToShortDateString();
             ViewData["passangers"] = passengers;
 

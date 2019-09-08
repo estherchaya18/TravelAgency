@@ -13,11 +13,11 @@
         <div class="inner-form">
             @if (ViewBag.passangers != null && ViewBag.passangers != 0)
             {
-                <div style="background-color:white">
-                    <div id="from">@ViewBag.from</div>
-                    <div id="to">@ViewBag.to</div>
-                    <div id="departure">@ViewBag.departure</div>
-                    <div id="passangers">@ViewBag.passangers</div>
+                <div style="background-color: #b78a62;color: white; width: 100%;font-weight: bold;text-align:center">
+                    Flight from <label id="from">@ViewBag.from  </label>
+                    to <label id="to">@ViewBag.to</label>
+                    on <label id="departure">@ViewBag.departure</label>
+                    <div><label id="passangers">@ViewBag.passangers</label> passangers</div>
                 </div>
             }
             else
@@ -117,8 +117,11 @@
 </div>
 @if (ViewBag.passangers != null && ViewBag.passangers != 0)
 {
-    <button data-id="Price" class="btn btn-primary text-uppercase js-scroll-trigger" id="SortPrice">Sort by price</button>
-    <button data-id="Fastest" class="btn btn-primary text-uppercase js-scroll-trigger" id="SortFaster">Sort by Faster</button>
+<div style="margin-left:10%;margin-top:2vh">
+    <label>Order by </label>
+    <button data-id="Price" class="btn btn-primary text-uppercase js-scroll-trigger" id="SortPrice">Price</button>
+    <button data-id="Fastest" class="btn btn-primary text-uppercase js-scroll-trigger" id="SortFaster">Faster</button>
+</div>
 }
 <div id="flights">
     @foreach (var item in Model)
