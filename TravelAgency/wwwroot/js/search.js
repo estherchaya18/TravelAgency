@@ -51,8 +51,8 @@ $(function () {
     $("#SortFaster, #SortPrice").click(function () {
         var $buttonClicked = $(this);
         var sortBy = $buttonClicked.attr('data-id');
-        var from = $("#from").text();
-        var to = $("#to").text();
+        var from = $("#from").attr('data-id');
+        var to = $("#to").attr('data-id');
         var departure = $("#departure").text();
         var pasangers = $("#passangers").text();
         var options = { "backdrop": "static", keyboard: true };

@@ -14,8 +14,8 @@
             @if (ViewBag.passangers != null && ViewBag.passangers != 0)
             {
                 <div style="background-color: #b78a62;color: white; width: 100%;font-weight: bold;text-align:center">
-                    Flight from <label id="from">@ViewBag.from  </label>
-                    to <label id="to">@ViewBag.to</label>
+                    Flight from <label id="from" data-id="@ViewBag.from.Id">@ViewBag.from.AirportDetailes  </label>
+                    to <label id="to" data-id="@ViewBag.to.Id">@ViewBag.to.AirportDetailes</label>
                     on <label id="departure">@ViewBag.departure</label>
                     <div><label id="passangers">@ViewBag.passangers</label> passangers</div>
                 </div>

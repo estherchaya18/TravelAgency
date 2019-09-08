@@ -171,16 +171,17 @@ namespace TravelAgency.Controllers
         public async Task<IActionResult> SortList(string sortOrder, string from, string to, string departure, int passengers)
         {
             var flightsSearch = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
-                         .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to &&flight.AppppearanceDateTime.Date.ToShortDateString() == departure &&  (flight.TotalSeats - flight.ReservedSeats) >= passengers)
-                         .OrderBy(f => f.Id);
-            
+                      .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to 
+                       && (flight.TotalSeats - flight.ReservedSeats) >= passengers)
+                      .OrderBy(f => f.Id);
+
             switch (sortOrder)
             {
                 case "Price":
-                    flightsSearch = flightsSearch.OrderBy(s => s.Price);
+                    flightsSearch = flightsSearch.Where(f=>f.AppppearanceDateTime.Date.ToShortDateString()==departure).OrderBy(s => s.Price);
                     break;
                 case "Fastest":
-                    flightsSearch = flightsSearch.OrderBy(s => (s.LandingDateTime - s.AppppearanceDateTime).TotalSeconds);
+                    flightsSearch = flightsSearch.Where(f => f.AppppearanceDateTime.Date.ToShortDateString() == departure).OrderBy(s => (s.LandingDateTime - s.AppppearanceDateTime).TotalSeconds);
                     break;
                 default:
                     //flights = flights;
