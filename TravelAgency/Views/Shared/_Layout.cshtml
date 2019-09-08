@@ -12,8 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet" />
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/jquery-ui.js"></script>
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
@@ -30,7 +32,7 @@
 <body id="page-top">
     <nav style="color:black" class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container" style="">
-            <strong><a class="navbar-brand js-scroll-trigger" asp-controller="Home" asp-action="Index" style="color:brown; font-family:Broadway;font-size:x-large; text-decoration:double;">TRAVEL AGENCY</a></strong>
+            <strong><a class="navbar-brand js-scroll-trigger" asp-controller="Home" asp-action="Index" style="color:#b78a62; font-family:Broadway;font-size:x-large; text-decoration:double;">TRAVEL AGENCY</a></strong>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="color:black;">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -40,26 +42,26 @@
                     <ul class="navbar-nav text-uppercase ml-auto">
                         @if (ViewData["IsDirector"] != null && (bool)ViewData["IsDirector"] == true)
                         {
-                            <li class="nav-item" style="color:brown;">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Airlines">Airlines</a>
+                            <li class="nav-item" style="color:#b78a62;">
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Airlines">Airlines</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Airports">Airports</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Airports">Airports</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Clients">Clients</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Clients">Clients</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Home/About">About</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Home/About">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Home/Contact">Contact</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Home/Contact">Contact</a>
                             </li>
                         }
                         else if (ViewData["userName"] != null && ViewData["userName"].ToString() != "")
                         {
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Orders/OrderHistory">Order History</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Orders/OrderHistory">Order History</a>
                             </li>
                         }
                         
@@ -68,20 +70,20 @@
                         @if (ViewData["userName"] != null && ViewData["userName"].ToString() != "")
                         {
                             <li style="margin-left: 6vw;" class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;">Hello, @ViewData["userName"]</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;">Hello, @ViewData["userName"]</a>
                             </li>
                             <li style="margin-left: 6vw;" class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Clients/Logout">Logout</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Clients/Logout">Logout</a>
                             </li>
                             @*<li>@Html.ActionLink("Logout", "Logout", "Home")</li>*@
                         }
                         else
                         {
                             <li style="margin-left: 6vw;" class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Clients/Login">Login</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Clients/Login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" style="color:brown;font-size:larger;" href="~/Clients/Register">Register</a>
+                                <a class="nav-link js-scroll-trigger" style="color:#b78a62;font-size:larger;" href="~/Clients/Register">Register</a>
                             </li>
 
                         }

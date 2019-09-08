@@ -192,6 +192,48 @@ namespace TravelAgency.Controllers
             return PartialView("_SortList", await flightsSearch.ToListAsync());
         }
 
+
+        public async Task<IActionResult> FilterTimeList(string from, string to, string departure, int passengers, string startTime, string endTime)
+        {
+            DateTime StartDeparture = Convert.ToDateTime(departure);
+            if (startTime.Substring(5, 2) == "AM")
+                StartDeparture = StartDeparture.AddHours(int.Parse(startTime.Substring(0, 2))==12?0: int.Parse(startTime.Substring(0, 2)));
+            else
+                StartDeparture = StartDeparture.AddHours(int.Parse(startTime.Substring(0, 2))+12);
+            StartDeparture = StartDeparture.AddMinutes(int.Parse(startTime.Substring(3, 2)));
+
+            DateTime endDeparture = Convert.ToDateTime(departure);
+            if (endTime.Substring(5, 2) == "AM")
+                endDeparture = endDeparture.AddHours(int.Parse(endTime.Substring(0, 2)));
+            else
+                endDeparture = endDeparture.AddHours(int.Parse(endTime.Substring(0, 2))<12?(int.Parse(endTime.Substring(0, 2)) + 12):(int.Parse(endTime.Substring(0, 2))));
+            endDeparture = endDeparture.AddMinutes(int.Parse(endTime.Substring(3, 2)));
+
+            var flightsSearch = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
+                      .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to
+                       && (flight.TotalSeats - flight.ReservedSeats) >= passengers)
+                      .OrderBy(f => f.Id);
+
+            flightsSearch = flightsSearch.Where(f => f.AppppearanceDateTime.Date.ToShortDateString() == departure).OrderBy(f => f.Id);
+            flightsSearch = flightsSearch.Where(f =>  f.AppppearanceDateTime > StartDeparture).OrderBy(f => f.Id);
+            flightsSearch = flightsSearch.Where(f =>  f.AppppearanceDateTime < endDeparture).OrderBy(f => f.Id);
+            //switch (sortOrder)
+            //{
+            //    case "Price":
+            //        flightsSearch = flightsSearch.Where(f => f.AppppearanceDateTime.Date.ToShortDateString() == departure).OrderBy(s => s.Price);
+            //        break;
+            //    case "Fastest":
+            //        flightsSearch = flightsSearch.Where(f => f.AppppearanceDateTime.Date.ToShortDateString() == departure).OrderBy(s => (s.LandingDateTime - s.AppppearanceDateTime).TotalSeconds);
+            //        break;
+            //    default:
+            //        //flights = flights;
+            //        break;
+            //}
+            if (flightsSearch == null)
+                return View(new List<Flights>());
+            return PartialView("_FilterTimeList", await flightsSearch.ToListAsync());
+        }
+
         public ActionResult ConfirmOrder(int Id, int passangers)
         {
             var flights = _context.Flights.Include(f => f.Airlines)

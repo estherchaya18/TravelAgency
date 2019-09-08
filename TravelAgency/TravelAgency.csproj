@@ -53,6 +53,12 @@
     <None Include="wwwroot\images\team\3.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Flights\_SortList - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
