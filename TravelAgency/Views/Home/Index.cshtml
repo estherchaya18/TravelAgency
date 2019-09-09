@@ -79,12 +79,14 @@
 
 
 <div id='myModal' class='modal fade'>
-    <div class="modal-dialog" style="margin-top:22vh">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div id='myModalContent'></div>
+            <button class="btn btn-primary text-uppercase js-scroll-trigger order" id="order" style="margin:2vw">ORDER</button>
         </div>
     </div>
 </div>
+
 @if (ViewBag.passangers != null && ViewBag.passangers != 0)
 {
     <div style="width: max-content;
@@ -102,8 +104,8 @@
     @if (ViewBag.passangers != null && ViewBag.passangers != 0)
     {
         <div style="width:17vw;margin-left:8vw;margin-top:2vh">
-           <div style="font-weight:bold;font-size:1.5vw">Filter departure time</div>
-            <hr style="margin-top:0;"/>
+            <div style="font-weight:bold;font-size:1.5vw">Filter departure time</div>
+            <hr style="margin-top:0;" />
             <div>
                 <strong>From </strong><strong id="amount" class="amount"></strong>
             </div>
@@ -155,10 +157,10 @@ border-radius: 0.5vw;
 
 
 @section Scripts{
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/search.js"></script>
     <script src="~/js/custom-materialize.js"></script>
     <script src="~/js/flatpickr.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 }
 
 <script>

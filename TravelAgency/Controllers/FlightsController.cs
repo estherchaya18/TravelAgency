@@ -239,6 +239,7 @@ namespace TravelAgency.Controllers
             var flights = _context.Flights.Include(f => f.Airlines)
                 .Include(f => f.AppearanceAirport).Include(f => f.LandingAirport).Where(f => f.Id == Id).First();
             ViewData["passengers"] = passangers;
+
             return PartialView("_ConfirmOrder", flights);
         }
 

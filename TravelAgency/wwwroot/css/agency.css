@@ -13,7 +13,14 @@ header {
 .searchDescription {
     color: white;
 }
-
+.chart div {
+    font: 10px sans-serif;
+    background-color: yellow;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: black;
+}
 .amount {
     color: #b78a62
 }
@@ -63,7 +70,7 @@ body {
     overflow-x: hidden;
     color: #b78a62;
     text-shadow: inherit;
-    font-family: 'Bradley Hand ITC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-family: 'Poppins', sans-serif;
 
 {
     line-height: 1.75;

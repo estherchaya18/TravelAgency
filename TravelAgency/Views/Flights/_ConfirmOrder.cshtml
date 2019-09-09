@@ -7,6 +7,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title" id="myModalLabel">Confirm order</h4>
     </div>
+    <div id="flightId" style="visibility:collapse">@Html.DisplayFor(model => model.Id)</div>
     <div>
         <div style="display:flex">
             <div style="margin-left:5vw">
@@ -27,10 +28,33 @@
             <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(model => model.Price) $</div>
         </div>
     </div>
+    <br />
+    <br />
+    <div style="font-weight:bold;text-align:center;font-size: 16px;">Please fill passanggers details:</div>
     @for (int i = 0; i < ViewBag.passengers; i++)
     {
         <hr />
-        <div>passanger @i</div>
+        <div style="font-weight:bold;text-align:center">Passangger @(i+1):</div>
+        <form style="padding:0 10vw">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Name:</label>
+                <input class="form-control passangerName" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Passport ID:</label>
+                <input class="form-control passangerPassportID" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Birthdate:</label>
+                <input class="form-control passangerBirthdate" type="date" />
+            </div>
+        </form>
     }
-    <button class="btn btn-primary text-uppercase js-scroll-trigger" style="margin:2vw">ORDER</button>
+    
 </div>
+
+
+@section Scripts{
+    <script src="~/js/search.js"></script>
+}

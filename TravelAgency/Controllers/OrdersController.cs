@@ -25,6 +25,49 @@ namespace TravelAgency.Controllers
             return View(await _context.Order.ToListAsync());
         }
 
+        public async Task<IActionResult> NewOrder(string flightId, string passangersNames, string passangersPassports, string passangersBirthdates)
+        {
+
+            List<string> names = passangersNames.Split(',').ToList();
+            List<string> passports = passangersPassports.Split(',').ToList();
+            List<string> birthdates = passangersBirthdates.Split(',').ToList();
+
+
+            Order newOrder = new Order();
+            newOrder.ClientId = int.Parse(HttpContext.Session.GetString("userId"));
+            newOrder.DateOrder = DateTime.Now;
+            newOrder.FlightId = int.Parse(flightId);
+
+            _context.Add(newOrder);
+            _context.SaveChanges();
+
+            int lastOrderId = newOrder.Id;
+
+
+            List<Passanger> passangers = new List<Passanger>();
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                //insert passanger
+                Passanger p = new Passanger();
+                p.Name = names[i];
+                p.PassportId = passports[i];
+                p.BirthDate = DateTime.Parse(birthdates[i]);
+                _context.Add(p);
+                _context.SaveChanges();
+                int lastPassangerId = p.Id;
+
+                //insert order passanges
+                OrderPassagers op = new OrderPassagers();
+                op.PassangerId = lastPassangerId;
+                op.OrderId = lastOrderId;
+                _context.Add(op);
+                await _context.SaveChangesAsync();
+            }
+
+            return PartialView("OrderComplited");
+        }
+
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
