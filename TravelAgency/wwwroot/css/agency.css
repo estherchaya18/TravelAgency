@@ -13,6 +13,46 @@ header {
 .searchDescription {
     color: white;
 }
+#order{
+    margin:2vh;
+}
+#orderGraph {
+    padding: 20px;
+    justify-content: space-between;
+    border: thin solid #b78a62;
+    box-shadow: 3px 3px 10px #888888;
+    border-radius: 3px;
+    width: min-content
+}
+#flights {
+    width: 60vw;
+    margin-left: 2vw
+}
+#flightContainer {
+    border: thin solid #b78a62;
+    border-radius: 0.5vw;
+    margin: auto;
+    /* background-color: sandybrown; */
+    margin-top: 2vh;
+    display: flex;
+}
+#sortBy {
+    width: max-content;
+    margin-left: auto;
+    margin-top: 2vh;
+    margin-right: 11.8vw;
+}
+#USDCurrency {
+    margin-top: 2vh;
+}
+
+#flightDetails {
+    background-color: #b78a62;
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    text-align: center
+}
 .chart div {
     font: 10px sans-serif;
     background-color: #b78a62;

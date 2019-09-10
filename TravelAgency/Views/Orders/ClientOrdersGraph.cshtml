@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "ClientOrdersGraph";
+}
+
+<h2>ClientOrdersGraph</h2>
+
+<a asp-action="OrderHistory" asp-controller="Orders">Back</a>
+<br />
+
+<div id="orderGraph">
+    <div>Your orders per years:</div>
+    <div id="Graph">
+        <div class="chart"></div>
+    </div>
+    <div>2016&nbsp;&nbsp;  2017&nbsp;&nbsp;  2018&nbsp;  2019 </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+    var data = @ViewBag.data;
+    </script>
+    <script src="~/js/ClientOrderGraph.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+}

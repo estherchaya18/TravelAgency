@@ -27,6 +27,10 @@ namespace TravelAgency.Controllers
 
         public async Task<IActionResult> NewOrder(string flightId, string passangersNames, string passangersPassports, string passangersBirthdates)
         {
+            if (HttpContext.Session.GetString("userId") == null)
+            {
+                RedirectToAction("Login", "Clients");
+            }
 
             List<string> names = passangersNames.Split(',').ToList();
             List<string> passports = passangersPassports.Split(',').ToList();
@@ -232,13 +236,16 @@ namespace TravelAgency.Controllers
             return View();
         }
 
-        public IActionResult YearlyOrderGraph()
+        public IActionResult ClientOrdersGraph()
         {
-            var q = from u in _context.Flights
-                    select u.Id;
+            var q = (from u in _context.Order
+                    .Where(o => o.DateOrder.Year <= 2019 && o.DateOrder.Year >= 16 && o.ClientId.ToString() == HttpContext.Session.GetString("userId"))
+                    .GroupBy(o => o.DateOrder.Year)
+                    .Select(g => g.Count())
+                     select u).ToList();
 
             ViewBag.data = "[" + string.Join(",", q.Distinct().ToList()) + "]";
-            return PartialView("YearlyOrderGraph");
+            return View();
         }
 
         public override ViewResult View()

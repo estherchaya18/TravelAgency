@@ -196,27 +196,43 @@ namespace TravelAgency.Controllers
         public async Task<IActionResult> FilterTimeList(string from, string to, string departure, int passengers, string startTime, string endTime)
         {
             DateTime StartDeparture = Convert.ToDateTime(departure);
-            if (startTime.Substring(5, 2) == "AM")
-                StartDeparture = StartDeparture.AddHours(int.Parse(startTime.Substring(0, 2))==12?0: int.Parse(startTime.Substring(0, 2)));
+            string[] strarr;
+            if (startTime.Contains("AM"))
+            {
+                strarr = startTime.Replace("AM", string.Empty).Split(':');
+                StartDeparture = StartDeparture.AddHours(int.Parse(strarr[0]) == 12 ? 0 : int.Parse(strarr[1]));
+            }
             else
-                StartDeparture = StartDeparture.AddHours(int.Parse(startTime.Substring(0, 2))+12);
-            StartDeparture = StartDeparture.AddMinutes(int.Parse(startTime.Substring(3, 2)));
-
+            {
+                strarr = startTime.Replace("PM", string.Empty).Split(':');
+                StartDeparture = StartDeparture.AddHours(int.Parse(strarr[0]) + 12);
+                StartDeparture = StartDeparture.AddMinutes(int.Parse(strarr[1]));
+            }
+            
             DateTime endDeparture = Convert.ToDateTime(departure);
-            if (endTime.Substring(5, 2) == "AM")
-                endDeparture = endDeparture.AddHours(int.Parse(endTime.Substring(0, 2)));
+            if (endTime.Contains("AM"))
+            {
+                strarr = endTime.Replace("AM", string.Empty).Split(':');
+                endDeparture = endDeparture.AddHours(int.Parse(strarr[0]));
+            }
             else
-                endDeparture = endDeparture.AddHours(int.Parse(endTime.Substring(0, 2))<12?(int.Parse(endTime.Substring(0, 2)) + 12):(int.Parse(endTime.Substring(0, 2))));
-            endDeparture = endDeparture.AddMinutes(int.Parse(endTime.Substring(3, 2)));
+            {
+                strarr = endTime.Replace("PM", string.Empty).Split(':');
+                if(int.Parse(strarr[0]) < 12)
+                    endDeparture = endDeparture.AddHours((int.Parse(strarr[0]) + 12));
+                else
+                    endDeparture = endDeparture.AddDays(1);
+
+            }
+            endDeparture = endDeparture.AddMinutes(int.Parse(strarr[1]));
 
             var flightsSearch = _context.Flights.Include(f => f.Airlines).Include(f => f.AppearanceAirport).Include(f => f.LandingAirport)
                       .Where(flight => flight.AppearanceAirportId.ToString() == from && flight.LandingAirportId.ToString() == to
-                       && (flight.TotalSeats - flight.ReservedSeats) >= passengers)
-                      .OrderBy(f => f.Id);
+                       && (flight.TotalSeats - flight.ReservedSeats) >= passengers);
 
-            flightsSearch = flightsSearch.Where(f => f.AppppearanceDateTime.Date.ToShortDateString() == departure).OrderBy(f => f.Id);
-            flightsSearch = flightsSearch.Where(f =>  f.AppppearanceDateTime > StartDeparture).OrderBy(f => f.Id);
-            flightsSearch = flightsSearch.Where(f =>  f.AppppearanceDateTime < endDeparture).OrderBy(f => f.Id);
+            flightsSearch = flightsSearch.Where(f => f.AppppearanceDateTime.Date.ToShortDateString() == departure);
+            flightsSearch = flightsSearch.Where(f =>  f.AppppearanceDateTime > StartDeparture);
+            flightsSearch = flightsSearch.Where(f =>  f.AppppearanceDateTime < endDeparture);
             //switch (sortOrder)
             //{
             //    case "Price":
