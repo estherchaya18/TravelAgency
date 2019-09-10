@@ -1,33 +1,61 @@
 ﻿@model IEnumerable<TravelAgency.Models.Order>
 
+<div class="s002">
+    <form>
+        <fieldset>
+            <legend>Order history</legend>
+        </fieldset>
+    </form>
 
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FlightId)
-                </th>
-                
-                <th>
-                    @Html.DisplayNameFor(model => model.DateOrder)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FlightId)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOrder)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-            </td>
-        </tr>
+</div>
+
+<div class="table" style="margin-top: 15vh;
+    width: 60vw;
+    margin-right: auto;
+    margin-left: auto;">
+
+
+    @foreach (var item in ViewBag.orders)
+    {
+        <hr />
+        <div>Order Date: @item.date</div>
+<div style="border: thin solid #b78a62;border-radius: 0.5vw; margin: auto;margin-top: 2vh;display: flex;">
+    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+        <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
+    </a>
+    <div>
+        <div style="display:flex">
+            <div style="margin-left:5vw">
+                <div style="font-weight:bold">Appaearance</div>
+                <div><label class="bold" style="font-size:2vw"></label> @item.flight.AppppearanceDateTime</div>
+                <div><label style="font-weight:bold">Airport:</label>  @item.flight.AppearanceAirport.AirportDetailes </div>
+                <div><label style="font-weight:bold">Terminal:</label>  @item.flight.AppearanceTerminal </div>
+            </div>
+            <div style="margin-left:5vw">
+                <div style="font-weight:bold">Landing</div>
+                <div><label class="bold" style="font-size:2vw"></label>  @item.flight.LandingDateTime</div>
+                <div> <label style="font-weight:bold">Airport:</label>  @item.flight.LandingAirport.AirportDetailes </div>
+                <div><label style="font-weight:bold">Terminal:</label>  @item.flight.LandingTerminal</div>
+            </div>
+            <div style="margin-left:5vw">
+                <div style="font-weight:bold">Passangers</div>
+                @foreach (var passa in item.passangers)
+                {
+                    <div>Passanger name : @passa.Name</div>
+                    <div>NamePassanger passport : @passa.PassportId</div>
+                    <div>Birthdate : @passa.BirthDate</div>
+                    <hr />
+                }
+            </div>
+        </div>
+        <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
+            <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @item.flight.Airlines.Name</div>
+            <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @item.flight.Price $</div>
+        </div>
+        
+    </div>
+</div>
+
 }
-    </tbody>
-</table>
+
+</div>

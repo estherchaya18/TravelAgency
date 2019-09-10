@@ -8,6 +8,55 @@ $(document).ready(function () {
 
 $(function () {
 
+    $.ajax({
+        type: "GET",
+        url: '/Orders/YearlyOrdersGraph',
+        contentType: "application/json; charset=utf-8",
+        
+        datatype: "json",
+        success: function (data) {
+            $('#Graph').html(data);
+        },
+        error: function () {
+            alert("Dynamic content load failed.");
+        }
+    });
+
+$("#ILSCurrency").click(function () {
+        var to = 'ILS';
+        $.ajax({
+            type: "POST",
+            url: 'http://www.apilayer.net/api/live?access_key=68ea705ce978a7c4d23bd6ffcf060eda' + '&currencies=' + 40 + ',' + to,
+            dataType: "json",
+            success: function (result) {
+                var newJson = "";
+                timestamp = result.timestamp;
+                source = result.source;
+                USDEUR = result.quotes.USDEUR
+                USDILS = result.quotes.USDILS
+
+                var pricess = $('.price');
+                for (var i = 0; i < pricess.length; i++) {
+                    var p = $("#price" + i).text();
+                    $("#price" + i).text((p * USDILS).toFixed(2) + '')
+                }
+                $(".currency").text("ILS");
+            }
+        });
+    });
+
+    $("#USDCurrency").click(function () {
+        var prices = [];
+        var pricess = $('.price');
+        $('.price').each(function () {
+            for (var i = 0; i < pricess.length; i++) {
+                var p = $("#price" + i).attr('data-id');
+                $("#price" + i).text(p)
+            }
+            $(".currency").text("$");
+        });
+    });
+
     $(".order").click(function () {
         var passangersNames = [];
         $('input.passangerName').each(function () {
@@ -55,7 +104,6 @@ $(function () {
               
                 $('#myModalContent').html(data);
                 $('.order').css('visibility', 'visible');
-                $('#myModal').modal(options);
                 $('#myModal').modal('show');
 
             },
@@ -187,6 +235,8 @@ $(function () {
             }
         });
     }
+
+    
 
     
     // get numbers to start off with                  

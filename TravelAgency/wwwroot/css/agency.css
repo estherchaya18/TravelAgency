@@ -15,11 +15,18 @@ header {
 }
 .chart div {
     font: 10px sans-serif;
-    background-color: yellow;
+    background-color: #b78a62;
+    color: white;
     text-align: right;
     padding: 3px;
     margin: 1px;
-    color: black;
+}
+.chart {
+    width: 150px;
+    display: flex;
+    /* flex-basis: 40px; */
+    
+    justify-content: space-between;
 }
 .amount {
     color: #b78a62
@@ -2602,6 +2609,14 @@ span.flatpickr-weekday {
     .s002 form .inner-form .input-field.fifth-wrap {
         margin-bottom: 0;
     }
+}
+
+#searchFlightdetails {
+    background-color: #b78a62;
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    text-align: center
 }
 
 

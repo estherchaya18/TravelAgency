@@ -196,8 +196,49 @@ namespace TravelAgency.Controllers
         public async Task<IActionResult> OrderHistory()
         {
             var currentUserID = _context.Clients.Find(int.Parse(HttpContext.Session.GetString("userId"))).Id;
-            var UserOrderHistory = _context.Order.Where(o => o.ClientId == currentUserID);
+            var UserOrderHistory = _context.Order.Where(o => o.ClientId == currentUserID).OrderByDescending(f=>f.DateOrder);
+            List<orderDetails> orderDetails = new List<orderDetails>();
+            UserOrderHistory.ToList().ForEach(order => {
+                var orderDetail = new orderDetails();
+                orderDetail.date = order.DateOrder;
+
+                var flight = _context.Flights.Include(f=>f.AppearanceAirport).Include(f=>f.LandingAirport)
+                .Include(f=>f.Airlines).Where(f=>f.Id == order.FlightId).First();
+                orderDetail.flight = flight;
+
+                orderDetail.passangers = new List<Passanger>();
+                var pass = from passanger in _context.Passanger
+                           join orderPass in _context.OrderPassagers on passanger.Id equals orderPass.PassangerId
+                           where orderPass.OrderId == order.Id
+                           select passanger;
+
+                orderDetail.passangers = pass.ToList();
+
+                orderDetail.id = order.Id;
+                orderDetails.Add(orderDetail);
+            });
+            ViewBag.orders = orderDetails;
             return View(await UserOrderHistory.ToListAsync());
+        }
+
+        public IActionResult YearlyOrdersGraph()
+        {
+            var q = (from u in _context.Order
+                    .Where(o=>o.DateOrder.Year == 2019 && o.DateOrder.Month >=6 && o.DateOrder.Month<=9)
+                    .GroupBy(o=>o.DateOrder.Month)
+                    .Select(g=>g.Count()) select u).ToList(); 
+
+            ViewBag.data = "[" + string.Join(",", q.Distinct().ToList()) + "]";
+            return View();
+        }
+
+        public IActionResult YearlyOrderGraph()
+        {
+            var q = from u in _context.Flights
+                    select u.Id;
+
+            ViewBag.data = "[" + string.Join(",", q.Distinct().ToList()) + "]";
+            return PartialView("YearlyOrderGraph");
         }
 
         public override ViewResult View()
@@ -229,5 +270,13 @@ namespace TravelAgency.Controllers
             }
             return base.RedirectToAction(actionName);
         }
+    }
+
+    public class orderDetails
+    {
+        public DateTime date;
+        public Flights flight;
+        public List<Passanger> passangers;
+        public int id;
     }
 }

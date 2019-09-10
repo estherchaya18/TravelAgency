@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    ViewData["Title"] = "OrderGraph";
+    
+}
+
+@using System.Web;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    @*<script class="scri" src="~/lib/jquery/dist/jquery.js"></script>*@
+    @*<script src="~/lib/jquery/jquery-ui.js"></script>*@
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+    var data = @ViewBag.data;
+    </script>
+    <script src="~/js/OrderGraph.js"></script>
+    <link href="~/css/agency.css" rel="stylesheet">
+</head>
+<body>
+    <div class="chart" style="display:flex"></div>
+</body>
+</html>
+@section Scripts
+    {
+    <script>
+    var data = @ViewBag.data;
+    </script>
+    <script src="~/js/OrderGraph.js"></script>
+}
+

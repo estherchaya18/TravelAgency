@@ -54,7 +54,7 @@ namespace TravelAgency.Controllers
             return View();
         }
 
-        public IActionResult OrderGraph()
+        public IActionResult YearlyOrdersGraph()
         {
             var q = from u in _context.Flights
                     select u.Id;

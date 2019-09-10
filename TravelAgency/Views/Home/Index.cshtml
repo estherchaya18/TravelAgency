@@ -78,6 +78,7 @@
 </div>
 
 
+
 <div id='myModal' class='modal fade'>
     <div class="modal-dialog">
         <div class="modal-content">
@@ -89,6 +90,10 @@
 
 @if (ViewBag.passangers != null && ViewBag.passangers != 0)
 {
+    <div>
+        <div id="ILSCurrency" data-id="ILS" style="margin-left:0">Show price on ILS currency</div>
+        <div id="USDCurrency" data-id="USD" style="margin-left:0">Show price on USD currency</div>
+    </div>
     <div style="width: max-content;
     margin-left: auto;
     margin-top: 2vh;
@@ -103,7 +108,7 @@
 <div style="display:flex">
     @if (ViewBag.passangers != null && ViewBag.passangers != 0)
     {
-        <div style="width:17vw;margin-left:8vw;margin-top:2vh">
+        <aside style="width:17vw;margin-left:8vw;margin-top:2vh">
             <div style="font-weight:bold;font-size:1.5vw">Filter departure time</div>
             <hr style="margin-top:0;" />
             <div>
@@ -111,53 +116,69 @@
             </div>
             <br />
             <div id="slider"></div>
-            <div style="visibility:hidden"><input value="08:00" id="start" /><input value="17:00" id="end" /></div>
+            <div style="visibility:collapse"><input value="08:00" id="start" /><input value="17:00" id="end" /></div>
 
-        </div>
+            
+        </aside>
     }
-    <div id="flights" style="width:60vw;margin-left:2vw">
-        @foreach (var item in Model)
-        {
-            <div style="border: thin solid #b78a62;
+        <div id="flights" style="width:60vw;margin-left:2vw">
+            @{int i = 0;}
+            @foreach (var item in Model)
+            {
+                <div style="border: thin solid #b78a62;
 border-radius: 0.5vw;
     margin: auto;
     /* background-color: sandybrown; */
     margin-top: 2vh;
     display: flex;">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                    <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
-                </a>
-                <div>
-                    <div style="display:flex">
-                        <div style="margin-left:5vw">
-                            <div style="font-weight:bold">Appaearance</div>
-                            <div><label class="bold" style="font-size:2vw"></label>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
-                            <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes) </div>
-                            <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.AppearanceTerminal) </div>
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                        <img class="img-fluid" style="border-radius: 6px;" src="images/ElAl.png" alt="">
+                    </a>
+                    <div>
+                        <div style="display:flex">
+                            <div style="margin-left:5vw">
+                                <div style="font-weight:bold">Appaearance</div>
+                                <div><label class="bold" style="font-size:2vw"></label>  @Html.DisplayFor(modelItem => item.AppppearanceDateTime)</div>
+                                <div><label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.AppearanceAirport.AirportDetailes) </div>
+                                <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.AppearanceTerminal) </div>
+                            </div>
+                            <div style="margin-left:5vw">
+                                <div style="font-weight:bold">Landing</div>
+                                <div><label class="bold" style="font-size:2vw"></label>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
+                                <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes) </div>
+                                <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
+                            </div>
                         </div>
-                        <div style="margin-left:5vw">
-                            <div style="font-weight:bold">Landing</div>
-                            <div><label class="bold" style="font-size:2vw"></label>  @Html.DisplayFor(modelItem => item.LandingDateTime)</div>
-                            <div> <label style="font-weight:bold">Airport:</label>  @Html.DisplayFor(modelItem => item.LandingAirport.AirportDetailes) </div>
-                            <div><label style="font-weight:bold">Terminal:</label>  @Html.DisplayFor(modelItem => item.LandingTerminal)</div>
+                        <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
+                            <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
+                            <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  <label id="price@(i)" class="price" data-id="@Html.DisplayFor(modelItem => item.Price)">@Html.DisplayFor(modelItem => item.Price)</label> <label class="currency">$</label></div>
+                            <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
                         </div>
-                    </div>
-                    <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
-                        <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
-                        <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
-                        <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+                i++;
+            }
+        </div>
 
 </div>
 
-
+<hr />
+<div style="margin-top: 10vh;padding-left: 5vw;display:flex">
+    <div style="padding: 20px;justify-content:space-between;
+    border: thin solid #b78a62;
+    border-radius: 3px;width:min-content">
+        <div>Monthly orders:</div>
+        <div id="Graph"></div>
+        <div>June&nbsp;&nbsp;  July&nbsp;&nbsp;  Aug&nbsp;  Sept </div>
+    </div>
+    <div style="margin-left:15vw">
+        <iframe width="220" height="200" src="https://www.youtube.com/embed/AtMzngYdx4s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
 
 @section Scripts{
     <script src="~/js/search.js"></script>
+    <script src="~/js/OrderGraph.js"></script>
     <script src="~/js/custom-materialize.js"></script>
     <script src="~/js/flatpickr.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
