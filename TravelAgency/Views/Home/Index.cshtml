@@ -109,14 +109,14 @@
     @if (ViewBag.passangers != null && ViewBag.passangers != 0)
     {
         <aside style="width:17vw;margin-left:8vw;margin-top:2vh">
-            <div style="font-weight:bold;font-size:1.5vw">Filter departure time</div>
+            @*<div style="font-weight:bold;font-size:1.5vw">Filter departure time</div>
             <hr style="margin-top:0;" />
             <div>
                 <strong>From </strong><strong id="amount" class="amount"></strong>
             </div>
             <br />
             <div id="slider"></div>
-            <div style="visibility:collapse"><input value="08:00" id="start" /><input value="17:00" id="end" /></div>
+            <div style="visibility:collapse"><input value="08:00" id="start" /><input value="17:00" id="end" /></div>*@
 
             
         </aside>
@@ -165,7 +165,7 @@ border-radius: 0.5vw;
 <hr />
 <div style="margin-top: 10vh;padding-left: 5vw;display:flex">
     <div style="padding: 20px;justify-content:space-between;
-    border: thin solid #b78a62;
+    border: thin solid #b78a62;box-shadow: 3px 3px 10px #888888;
     border-radius: 3px;width:min-content">
         <div>Monthly orders:</div>
         <div id="Graph"></div>

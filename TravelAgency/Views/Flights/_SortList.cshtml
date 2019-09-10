@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TravelAgency.Models.Flights>
-
+@{int i = 0;}
 @foreach (var item in Model)
 {
     <div style="border: thin solid #b78a62;
@@ -28,11 +28,12 @@ border-radius: 0.5vw;
             </div>
             <div style="width:100%;display:flex;margin-left:auto;margin-right:1vw">
                 <div style="margin-left:5vw"><label style="font-weight:bold">Ailine:</label>  @Html.DisplayFor(modelItem => item.Airlines.Name)</div>
-                <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  @Html.DisplayFor(modelItem => item.Price) $</div>
+                <div style="margin-left:5vw"><label style="font-weight:bold">Price:</label>  <label id="price@(i)" class="price" data-id="@Html.DisplayFor(modelItem => item.Price)">@Html.DisplayFor(modelItem => item.Price)</label> <label class="currency">$</label></div>
                 <button data-id="@item.Id" style="margin-left:auto;margin-right:2vw" class="btn btn-primary text-uppercase js-scroll-trigger btnLink" name="btnLink">BUY</button>
             </div>
         </div>
     </div>
+    i++;
 }
 
 
