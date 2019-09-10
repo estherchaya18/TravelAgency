@@ -25,6 +25,13 @@ namespace TravelAgency.Controllers
             return View(await _context.Airports.ToListAsync());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string Name)
+        {
+            return View(await _context.Airports.Where(p => p.AirportDetailes.Contains(Name)).ToListAsync());
+        }
+
+
         // GET: Airports/Details/5
         public async Task<IActionResult> Details(int? id)
         {
