@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form style="margin-right: auto;
+<div style="margin-right: auto;
     width:fit-content;
     font-size:large;
     font-weight:100;
@@ -22,6 +22,14 @@
     <p>
         <a asp-action="Create" style="color:indigo; font-size:larger;">Create New</a>
     </p>
+
+
+    <form asp-action="Index">
+        <label>Enter Name:</label>
+        <input type="text" name="Name" />
+        <input type="submit" value="Filter" />
+    </form>
+
 
     <table class="table" style="color:brown">
         @*<thead>
@@ -48,4 +56,4 @@
             }
         </tbody>
     </table>
-</form>
+</div>

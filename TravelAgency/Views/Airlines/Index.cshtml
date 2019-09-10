@@ -7,8 +7,9 @@
 <link href="~/css/site.css" />
 <body>
     <div>
-        @*<h2>Index</h2>*@
-        <form style="margin-right: auto;
+
+       
+        <div style="margin-right: auto;
     width:fit-content;
     font-size:large;
     font-weight:100;
@@ -21,53 +22,40 @@
             <p>
                 <a asp-action="Create" style="color:indigo; font-size:larger;">Create New</a>
             </p>
-            <div>
-                @model IEnumerable <SearchSortPaging.Models.Airlines >
 
-                @ {
-                ViewBag.Title = "Index";
-                }
+            <form asp-action="Index">
+                <label>Enter Name:</label>
+                <input type="text" name="Name" />
+                <input type="submit" value="Filter" />
+            </form>
 
-                @ * Html.BeginForm is used to add a form in an Html document * @@ * Pass the action name in the first parameter, controller name in the second parameter and specify the form request type as get * @
-
-                @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-                {
-                    //the following are search options
-                    <
-                    b > Search Option: < /b>@Html.RadioButton("option", "Name") <text>Name</text> @Html.RadioButton("option", "Gender") < text > Gender < /text>
-                    @Html.RadioButton("option", "Subjects")<text>Subject</text> @Html.TextBox("search") < input type = "submit"
-                    name = "submit"
-                    value = "Search" / >
-                    }
-                    <table class="table" style="color:brown">
-                        @*<thead>
+            <table class="table" style="color:brown">
+                <thead>
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.Name)
                         </th>
                         <th></th>
                     </tr>
-                </thead>*@
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+        </div>
+        </table>
     </div>
-    
 </body>
 
 @* SEARCH *@

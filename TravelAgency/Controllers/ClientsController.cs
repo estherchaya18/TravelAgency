@@ -33,6 +33,7 @@ namespace TravelAgency.Controllers
             return View(await _context.Clients.ToListAsync());
         }
 
+
         // GET: Clients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
